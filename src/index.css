@@ -1,44 +1,100 @@
 body {
-  width: 100%;
+    width: 100%;
 }
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 ul, ol {
-  list-style-type: none;
+    list-style-type: none;
 }
 
 @font-face {
-  font-family: 'Poppins', sans-serif;
-  src:  url('./assets/fonts/poppins/Poppins-Regular.ttf') format("ttf");
-  font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    src: url('./assets/fonts/poppins/Poppins-Regular.ttf') format("ttf");
+    font-weight: 400;
+    font-display: swap;
 }
 
 @font-face {
-  font-family: 'Poppins', sans-serif;
-  src: url('./assets/fonts/poppins/Poppins-Medium.ttf') format("ttf");
-  font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    src: url('./assets/fonts/poppins/Poppins-Medium.ttf') format("ttf");
+    font-weight: 500;
+    font-display: swap;
 }
 
 @font-face {
-  font-family: 'Poppins', sans-serif;
-  src: url('./assets/fonts/poppins/Poppins-SemiBold.ttf') format("ttf");
-  font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    src: url('./assets/fonts/poppins/Poppins-SemiBold.ttf') format("ttf");
+    font-weight: 600;
+    font-display: swap;
 }
 
 @font-face {
-  font-family: 'Poppins', sans-serif;
-  src: url('./assets/fonts/poppins/Poppins-Bold.ttf') format("ttf");
-  font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    src: url('./assets/fonts/poppins/Poppins-Bold.ttf') format("ttf");
+    font-weight: 700;
+    font-display: swap;
 }
 
 @font-face {
-  font-family: 'Poppins', sans-serif;
-  src: url('./assets/fonts/poppins/Poppins-Italic.ttf') format("ttf");
-  font-style: italic;
-  font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    src: url('./assets/fonts/poppins/Poppins-Italic.ttf') format("ttf");
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter', sans-serif;
+    src: local('Inter'),
+    url('./assets/fonts/inter/Inter-Regular.ttf') format("ttf");
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter', sans-serif;
+    src: local('Inter'),
+    url('./assets/fonts/inter/Inter-Medium.ttf') format("ttf");
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Public Sans', sans-serif;
+    src:  url('./assets/fonts/public-sans/PublicSans-Bold.ttf') format("ttf");
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Manrope', sans-serif;
+    src: url('./assets/fonts/manrope/Manrope-Medium.ttf') format("otf");
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Manrope', sans-serif;
+    src: url('./assets/fonts/manrope/Manrope-Bold.ttf') format("ttf");
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Manrope', sans-serif;
+    src: url('./assets/fonts/manrope/Manrope-ExtraBold.otf') format("ttf");
+    font-weight: 800;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Quicksand', sans-serif;
+    src: url('./assets/fonts/quicksand/Quicksand-Medium.ttf') format("ttf");
+    font-weight: 500;
+    font-display: swap;
 }
