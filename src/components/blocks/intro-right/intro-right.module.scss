@@ -1,0 +1,30 @@
+.visualization {
+position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.imageWrapper {
+  position: absolute;
+  left: 126px;
+  top: 31px;
+
+  &::before {
+    position: absolute;
+    border-radius: 50%;
+    background-color: #6C5FBC;
+    width: 420px;
+    height: 420px;
+    content: '';
+    left: 25px;
+    top: -10px;
+    z-index: 1;
+  }
+}
+
+.image {
+  position: absolute;
+  z-index: 1;
+}
