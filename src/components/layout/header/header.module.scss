@@ -36,6 +36,11 @@
   text-decoration: none;
   line-height: 27px;
   margin-right: 62px;
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    color: #333;
+  }
 
   &::first-letter {
     text-transform: uppercase;

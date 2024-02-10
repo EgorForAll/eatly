@@ -7,6 +7,11 @@
   border-radius: 12px;
   text-decoration: none;
   margin-right: 16px;
+  transition: opacity 0.3s ease-in-out;
+
+  &:hover {
+    opacity: 0.5;
+  }
 
   &:last-child {
     margin-right: 0;

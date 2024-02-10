@@ -22,9 +22,41 @@ position: relative;
     top: -10px;
     z-index: 1;
   }
+
+  &::after {
+    position: absolute;
+    top: 45px;
+    left: 401px;
+    content: '';
+    width: 101px;
+    height: 98px;
+    background-image: url("../../../assets/images/arrow.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
 }
 
 .image {
   position: absolute;
   z-index: 1;
 }
+
+.orderWrapper {
+  position: absolute;
+  top: -40px;
+  right: 42px;
+  z-index: 2;
+
+  &::after {
+    position: absolute;
+    top: -31px;
+    right: -43px;
+    content: '';
+    width: 42px;
+    height: 28px;
+    background-image: url("../../../assets/images/Illustration.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+}
+
