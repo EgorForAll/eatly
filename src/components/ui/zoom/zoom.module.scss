@@ -1,0 +1,19 @@
+.zoom {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 6px;
+  color: #828282;
+  margin-right: 9px;
+  padding: 5px 9px;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.zoomActive {
+  @extend .zoom;
+  border-radius: 17px;
+  color: #000;
+  background-color: rgba(231, 231, 231, 0.92);;
+}

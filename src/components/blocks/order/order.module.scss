@@ -6,6 +6,11 @@
   background-color: #fff;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   border-radius: 16px;
+  
+  @media (max-width: 992px) {
+    width: 100%;
+    border: 1px solid #e8e8e8;
+  }
 }
 
 .orderImageWrapper {
@@ -35,6 +40,10 @@
   line-height: 140%;
   color: #323142;
   transform: translateY(-9px);
+
+  @media (max-width: 992px) {
+    font-size: 12px;
+  }
 }
 
 .orderStatus {

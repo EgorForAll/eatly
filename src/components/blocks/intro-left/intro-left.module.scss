@@ -3,6 +3,11 @@
   display: flex;
   flex-direction: column;
   width: 46%;
+
+  @media (max-width: 992px) {
+    width: 100%;
+    margin-bottom: 40px;
+  }
 }
 
 .users {
@@ -17,6 +22,11 @@
   margin-bottom: 20px;
   opacity: 0.2;
 
+  @media (max-width: 992px) {
+    padding-left: 0;
+    font-size: 12px;
+  }
+
   &::before {
     position: absolute;
     width: 54px;
@@ -25,6 +35,10 @@
     left: 0;
     height: 1px;
     background-color: #201F1F;
+
+    @media (max-width: 992px) {
+      display: none;
+    }
   }
 }
 
@@ -35,6 +49,13 @@
   line-height: 120%;
   margin-bottom: 15px;
   letter-spacing: -3px;
+
+  @media (max-width: 992px) {
+    font-size: 25px;
+    letter-spacing: 0;
+    line-height: 140%;
+    text-align: center;
+  }
 }
 
 .colored {
@@ -49,8 +70,19 @@
   color: #676767;
   line-height: 28px;
   margin-bottom: 53px;
+
+  @media (max-width: 992px) {
+    width: 100%;
+    font-size: 15px;
+    line-height: 22px;
+    text-align: justify;
+    margin-bottom: 25px;
+  }
 }
 
 .fastLinks {
   display: flex;
+  @media (max-width: 992px) {
+    justify-content: center;
+  }
 }

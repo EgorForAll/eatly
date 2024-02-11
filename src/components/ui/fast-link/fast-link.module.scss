@@ -16,4 +16,9 @@
   &:last-child {
     margin-right: 0;
   }
+
+  @media (max-width: 992px) {
+    padding: 10px 15px;
+    font-size: 15px;
+  }
 }
