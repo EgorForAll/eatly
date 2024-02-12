@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import styles from "./order.module.scss";
+import Image from 'react-image-webp';
 
 type TOrder = {
     name: string;
@@ -13,11 +14,7 @@ const Order: React.FC<TOrder> = ({name, status, time, image, imageWebp}) => {
     return (
         <div className={styles.orderWindow}>
             <div className={styles.orderImageWrapper}>
-                <picture>
-                    <source srcSet={imageWebp}/>
-                    <img className={styles.smallImage} src={image} alt="Изображение заказа" width={73}
-                         height={81}/>
-                </picture>
+                <Image src={image} webp={imageWebp} width={73} height={81} alt={'Изображение заказа'} className={styles.smallImage}/>
             </div>
             <div className={styles.orderDescription}>
                 <h2 className={styles.orderTitle}>{name}</h2>

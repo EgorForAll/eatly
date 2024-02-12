@@ -1,16 +1,37 @@
-import {IStats} from "@/interfaces/Istatistics";
+import {IRecipes} from "@/interfaces/recipes";
+import BurgerImage from "@/assets/images/burger.png";
+import ChickenImage from "@/assets/images/chicken.png";
+import BurgerImageWebp from "@/assets/images/burger.webp";
+import ChickenImageWebp from "@/assets/images/chicken.webp"
+import BurgerSmall from "@/assets/images/burger-small.png";
+import ChickenSmall from "@/assets/images/chicken-small.png";
 
-export const statsList: IStats[] = [
+export const recipes: IRecipes[] = [
     {
-        title: '10K+',
-        description: 'Satisfied Costumers \r\n All Great Over The World '
+        image: ChickenImage,
+        image_small: ChickenSmall,
+        webp: ChickenImageWebp,
+        type: 'pizza',
+        name: 'The Chicken King',
+        time: 24,
+        rate: 4.8
     },
     {
-        title: '4M',
-        description: 'Healthy Dishes Sold \r\n Including Milk Shakes Smooth'
+        image: BurgerImage,
+        image_small: BurgerSmall,
+        webp: BurgerImageWebp,
+        type: 'pizza',
+        name: 'The Burger King',
+        time: 24,
+        rate: 4.9
     },
     {
-        title: '99.99%',
-        description: 'Reliable Customer Support \r\n We Provide Great Experiences'
-    }
+        image: ChickenImage,
+        image_small: ChickenSmall,
+        webp: ChickenImageWebp,
+        type: 'pizza',
+        name: 'The Chicken King',
+        time: 24,
+        rate: 4.8
+    },
 ]

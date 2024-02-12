@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import styles from "./statisctics.module.scss";
-import {IStats} from "@/interfaces/Istatistics";
+import {IStats} from "@/interfaces/statistics";
 
 interface IStatistics {
  statsList: IStats[]

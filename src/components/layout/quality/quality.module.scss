@@ -3,21 +3,24 @@
 }
 
 .container {
-  margin-left: 209px;
+  margin-left: 95px;
   margin-right: 93px;
   padding-top: 121px;
-  padding-bottom: 120px;
+  margin-bottom: 50px;
+  padding-bottom: 114px;
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid #CBCBCB;
   @media (max-width: 992px) {
     margin: 0 20px;
     padding-top: 0;
     padding-bottom: 30px;
+    border-bottom: none;
   }
 }
 
 .screen {
-  width: 1fr;
+  margin-left: 113px;
   position: relative;
 
   @media (max-width: 992px) {

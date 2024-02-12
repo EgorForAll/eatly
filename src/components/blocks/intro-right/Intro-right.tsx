@@ -15,7 +15,7 @@ const IntroRight: React.FC = () => {
         <div className={styles.visualization}>
             <div className={styles.imageWrapper}>
                 <picture>
-                    <source srcSet={ImageWebp}/>
+                    <source type="image/webp" srcSet={ImageWebp}/>
                     <img className={styles.image} src={Image} alt="Изображение блюда" width={430} height={443}/>
                 </picture>
             </div>

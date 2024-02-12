@@ -12,6 +12,7 @@
     "@types/react-dom": "^18.2.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-responsive-image": "^5.0.0",
     "react-scripts": "5.0.1",
     "sass": "^1.70.0",
     "typescript": "^4.9.5",
@@ -43,6 +44,7 @@
     ]
   },
   "devDependencies": {
-    "@craco/craco": "^7.1.0"
+    "@craco/craco": "^7.1.0",
+    "react-image-webp": "^0.8.0"
   }
 }

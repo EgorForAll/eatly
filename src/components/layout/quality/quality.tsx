@@ -4,16 +4,14 @@ import styles from "./quality.module.scss";
 import MobileScreen from "@/assets/images/mobile-screen.png";
 import MobileScreenWebp from "@/assets/images/mobile-screen.webp";
 import FastLink from "@/components/ui/fast-link/Fast-link";
+import Image from 'react-image-webp';
 
 const Quality: React.FC = () => {
     return (
         <section className={styles.quality}>
             <div className={styles.container}>
                 <div className={styles.screen}>
-                    <picture>
-                        <source type="image/webp" srcSet={MobileScreenWebp}/>
-                        <img src={MobileScreen} alt="Our app screen" width={304} height={609}/>
-                    </picture>
+                    <Image src={MobileScreen} webp={MobileScreenWebp} alt={'Out app screen'} width={304} height={609} />
                 </div>
                 <div className={styles.description}>
                     <h2 className={styles.title}>Premium <span className={styles.colored}>Quality</span> <br/> For Your Health</h2>
