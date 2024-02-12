@@ -3,18 +3,145 @@
 }
 
 .container {
-  margin: 0 80px;
+  margin-left: 209px;
+  margin-right: 93px;
+  padding-top: 121px;
+  padding-bottom: 120px;
   display: flex;
-  align-items: flex-end;
   justify-content: space-between;
+  @media (max-width: 992px) {
+    margin: 0 20px;
+    padding-top: 0;
+    padding-bottom: 30px;
+  }
 }
 
 .screen {
   width: 1fr;
+  position: relative;
+
+  @media (max-width: 992px) {
+    display: none;
+  }
+  &::before {
+    position: absolute;
+    top: -17px;
+    right: -68px;
+    width: 56px;
+    height: 62px;
+    content: '';
+    background-image: url("../../../assets/images/illustration-screen.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
 }
 
 .description {
-  width: 1fr;
+  width: 547px;
   display: flex;
   flex-direction: column;
+  padding-bottom: 50px;
+}
+
+.title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 51px;
+  line-height: 114%;
+  text-transform: capitalize;
+  color: #18181b;
+  margin-top: 74px;
+  letter-spacing: 2px;
+
+  @media (max-width: 992px) {
+    font-size: 30px;
+    letter-spacing: 0;
+    text-align: center;
+    margin-top: 50px;
+  }
+}
+
+.colored {
+  color: #6C5FBC;
+}
+
+.advantagesList {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  margin-top: 65px;
+  padding-left: 30px;
+
+  @media (max-width: 992px) {
+    margin-top: 30px;
+  }
+}
+
+.advantagesItem {
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 140%;
+  color: #676767;
+  margin-bottom: 27px;
+
+  @media (max-width: 992px) {
+   font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  &::before {
+    position: absolute;
+    content: '';
+    top: 13px;
+    left: -19px;
+    background-color: #676767;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+}
+
+.fastLinkWrapper {
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  margin-top: 38px;
+
+  @media (max-width: 992px) {
+    justify-content: center;
+  }
+
+  a {
+    display: block;
+    width: 185px;
+    height: 63px;
+    letter-spacing: 1px;
+    padding: 20px 25px;
+    background-image: url("../../../assets/images/arrow-right.svg");
+    background-repeat: no-repeat;
+    background-size: 27px 27px;
+    background-position: 84% center;
+
+    @media (max-width: 992px) {
+      font-size: 18px;
+    }
+  }
+
+  &::before {
+    position: absolute;
+    bottom: -81%;
+    right: 40%;
+    width: 169px;
+    height: 69px;
+    background-image: url("../../../assets/images/download-arrow.svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    content: '';
+
+    @media (max-width: 992px) {
+      display: none;
+    }
+  }
 }
