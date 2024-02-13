@@ -10,6 +10,7 @@ import Recipes from "@/components/layout/recipes/recipes";
 import Dashboard from "@/components/layout/dashboard/dashboard";
 import Reviews from "@/components/layout/reviews/reviews";
 import Questions from "@/components/layout/questions/questions";
+import Footer from "@/components/layout/footer/footer";
 
 const App: React.FC = () => {
   return (
@@ -24,6 +25,7 @@ const App: React.FC = () => {
             <Reviews reviews={reviews} />
             <Questions questions={questions} />
         </main>
+        <Footer />
     </div>
   );
 }
