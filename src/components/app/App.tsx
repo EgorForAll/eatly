@@ -4,10 +4,11 @@ import Header from "@/components/layout/header/Header";
 import Intro from "@/components/layout/intro/Intro";
 import Statistics from "@/components/layout/statistics/statistics";
 import {statsList} from "@/layout-data/layout-data";
-import {recipes, orders, purchases} from "@/mock/mock";
+import {recipes, orders, purchases, reviews} from "@/mock/mock";
 import Quality from "@/components/layout/quality/quality";
 import Recipes from "@/components/layout/recipes/recipes";
 import Dashboard from "@/components/layout/dashboard/dashboard";
+import Reviews from "@/components/layout/reviews/reviews";
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const App: React.FC = () => {
             <Quality />
             <Recipes recipes={recipes}/>
             <Dashboard orders={orders} purchases={purchases}/>
+            <Reviews reviews={reviews} />
         </main>
     </div>
   );

@@ -15,6 +15,9 @@ import FishImage from "@/assets/images/fish.png";
 import FishImageWebp from "@/assets/images/fish.webp";
 import ExpenseIcon from "@/assets/images/expense.svg";
 import VocherIcon from "@/assets/images/vocher.svg";
+import {IReview} from "@/interfaces/reviews";
+import ClientImage from "@/assets/images/client-photo.png";
+import ClientImageWebp from "@/assets/images/client-photo.webp";
 
 export const recipes: IRecipes[] = [
     {
@@ -88,4 +91,23 @@ export const purchases: IPurchase[] = [
         icon: VocherIcon,
         progress: 60
     }
+]
+
+export const reviews: IReview[] = [
+    {
+        name: 'Alexander R.',
+        time: '01 Year With Us',
+        image: ClientImage,
+        image_webp: ClientImageWebp,
+        text: 'Online invoice payment helps companies save time, are faster and save maximum effort for the clients and save maximum effort. Online invoice payment helps companies save time',
+        rate: 5
+    },
+    {
+        text: 'Online invoice payment helps companies save time, are faster and save maximum effort for the clients and save maximum effort. Online invoice payment helps companies save time',
+        rate: 5
+    },
+    {
+        text: 'Online invoice payment helps companies save time, are faster and save maximum effort for the clients and save maximum effort. Online invoice payment helps companies save time',
+        rate: 5
+    },
 ]
