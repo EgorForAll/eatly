@@ -21,6 +21,7 @@
 
 .screen {
   margin-left: 113px;
+  margin-top: -11px;
   position: relative;
 
   @media (max-width: 992px) {
@@ -53,7 +54,7 @@
   line-height: 114%;
   text-transform: capitalize;
   color: #18181b;
-  margin-top: 74px;
+  margin-top: 64px;
   letter-spacing: 2px;
 
   @media (max-width: 992px) {
@@ -73,7 +74,7 @@
   flex-direction: column;
   list-style-type: none;
   margin-top: 65px;
-  padding-left: 30px;
+  padding-left: 45px;
 
   @media (max-width: 992px) {
     margin-top: 30px;

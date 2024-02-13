@@ -1,11 +1,11 @@
 // @flow
 import * as React from 'react';
-import styles from "./footer.module.scss";
 import Logo from "@/components/ui/logo/Logo";
 import {ReactComponent as InstaIcon} from "@/assets/images/insta.svg";
 import {ReactComponent as InIcon} from "@/assets/images/in.svg";
 import {ReactComponent as FacebookIcon} from "@/assets/images/facebook.svg";
 import {ReactComponent as TwitterIcon} from "@/assets/images/twitter.svg";
+import styles from "./footer.module.scss";
 
 const Footer: React.FC= () => {
     return (

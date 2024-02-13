@@ -13,7 +13,7 @@
 .up {
   display: flex;
   justify-content: space-between;
-  padding-bottom: 16px;
+  padding-bottom: 11px;
   border-bottom: 1px solid #818181;
 
   @media (max-width: 992px) {
@@ -25,7 +25,7 @@
 .nav {
   display: flex;
   justify-content: space-between;
-  margin-right: 13px;
+  margin-right: -7px;
 
   @media (max-width: 992px) {
     justify-content: flex-start;
@@ -34,7 +34,7 @@
 }
 
 .logoWrapper {
-  transform: translate(-3px, -13px);
+  transform: translate(0, -15px);
 }
 
 .link {
@@ -90,7 +90,7 @@
 }
 
 .item {
-  margin-right: 58px;
+  margin-right: 49px;
   &:last-child {
     margin-right: 0;
   }

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import styles from "./recipes.module.scss";
 import {IRecipes} from "@/interfaces/recipes";
-import MealCard from "@/components/blocks/meal-card/meal.card";
+import MealCard from "@/components/blocks/meal-card/meal-card";
 
 type TRecipes = {
     recipes: IRecipes[]

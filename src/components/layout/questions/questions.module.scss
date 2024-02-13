@@ -10,7 +10,7 @@
   line-height: 120%;
   text-align: center;
   color: #323142;
-  margin-top: 150px;
+  margin-top: 163px;
 
   @media (max-width: 992px) {
     font-size: 30px;
@@ -20,8 +20,8 @@
   &::before {
     position: absolute;
     content: '';
-    top: -43%;
-    right: 33%;
+    top: -45%;
+    right: 32%;
     width: 47px;
     height: 45px;
     background-image: url("../../../assets/images/illustration-question.svg");

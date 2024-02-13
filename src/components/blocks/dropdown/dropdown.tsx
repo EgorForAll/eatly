@@ -2,8 +2,8 @@
 import * as React from 'react';
 import styles from "./dropdown.module.scss";
 import {IDropdown} from "@/interfaces/dropdown";
-import {ReactComponent as Plus} from "@/assets/images/plus.svg";
-import {ReactComponent as Minus} from "@/assets/images/minus.svg";
+import {ReactComponent as Plus} from "../../../assets/images/plus.svg";
+import {ReactComponent as Minus} from "../../../assets/images/minus.svg";
 import {useState} from "react";
 
 type TDropdown = {

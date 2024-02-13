@@ -3,6 +3,6 @@ export interface IOrders {
     time: string;
     status: string;
     image: string;
-    imageWebp: string;
+    imageWebp?: string;
     is_fail?: boolean;
 }

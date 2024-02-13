@@ -4,7 +4,7 @@ import {IRecipes} from "@/interfaces/recipes";
 import {ResponsiveImage, ResponsiveImageSize} from "react-responsive-image";
 import styles from "./meal-card.module.scss";
 import {useEffect, useRef, useState} from "react";
-import Bookmark from "@/components/ui/bookmark/bookmark";
+import Bookmark from "../../ui/bookmark/bookmark";
 
 interface IMealCard {
     recipe: IRecipes;
