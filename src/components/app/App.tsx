@@ -3,12 +3,13 @@ import styles from './App.module.scss';
 import Header from "@/components/layout/header/Header";
 import Intro from "@/components/layout/intro/Intro";
 import Statistics from "@/components/layout/statistics/statistics";
-import {statsList} from "@/layout-data/layout-data";
+import {statsList, questions} from "@/layout-data/layout-data";
 import {recipes, orders, purchases, reviews} from "@/mock/mock";
 import Quality from "@/components/layout/quality/quality";
 import Recipes from "@/components/layout/recipes/recipes";
 import Dashboard from "@/components/layout/dashboard/dashboard";
 import Reviews from "@/components/layout/reviews/reviews";
+import Questions from "@/components/layout/questions/questions";
 
 const App: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const App: React.FC = () => {
             <Recipes recipes={recipes}/>
             <Dashboard orders={orders} purchases={purchases}/>
             <Reviews reviews={reviews} />
+            <Questions questions={questions} />
         </main>
     </div>
   );
