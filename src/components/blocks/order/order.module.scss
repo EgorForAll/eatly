@@ -68,6 +68,13 @@
   font-size: 10px;
   line-height: 140%;
   color: #acadb9;
-  margin-right: 29px;
-  margin-bottom: 13px;
+  margin-right: 22px;
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+}
+
+
+.failStatus {
+  @extend .orderStatus;
+  color: #F1534E;
 }

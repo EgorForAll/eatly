@@ -29,19 +29,17 @@
 
 
   @media (max-width: 992px) {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     width: 277px;
     height: 280px;
   }
 }
 
 .itemMovedUp {
-  @extend .item;
   animation: up 0.4s forwards;
 }
 
 .itemMovedDown {
-  @extend .item;
   animation: down 0.3s forwards;
 }
 

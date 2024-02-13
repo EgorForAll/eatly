@@ -2,28 +2,27 @@
 import * as React from 'react';
 import styles from "./order.module.scss";
 import Image from 'react-image-webp';
+import {IOrders} from "@/interfaces/orders";
 
 type TOrder = {
-    name: string;
-    time: string;
-    status: string;
-    image: string;
-    imageWebp: string;
+    order: IOrders
 }
-const Order: React.FC<TOrder> = ({name, status, time, image, imageWebp}) => {
+
+const Order: React.FC<TOrder> = ({order}) => {
     return (
-        <div className={styles.orderWindow}>
+        <li className={styles.orderWindow}>
             <div className={styles.orderImageWrapper}>
-                <Image src={image} webp={imageWebp} width={73} height={81} alt={'Изображение заказа'} className={styles.smallImage}/>
+                <Image src={order.image} webp={order.imageWebp} width={72} height={73} alt={'Изображение заказа'}
+                       className={styles.smallImage}/>
             </div>
             <div className={styles.orderDescription}>
-                <h2 className={styles.orderTitle}>{name}</h2>
-                <span className={styles.orderStatus}>{status}</span>
+                <h2 className={styles.orderTitle}>{order.name}</h2>
+                <span className={order.is_fail ? styles.failStatus : styles.orderStatus}>{order.status}</span>
             </div>
             <div className={styles.timeWrapper}>
-                <span className={styles.orderTime}>{time}</span>
+                <span className={styles.orderTime}>{order.time}</span>
             </div>
-        </div>
+        </li>
     );
 };
 
