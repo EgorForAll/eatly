@@ -1,0 +1,63 @@
+.article {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-height: 233px;
+  padding: 26px 24px 26px 20px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 47px 0 rgba(197, 197, 197, 0.25);
+  overflow: hidden;
+
+  article {
+    overflow: hidden;
+  }
+
+  p {
+    flex-grow: 1;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 145%;
+    text-align: justify;
+    color: #081420;
+  }
+}
+
+.header {
+  width: 100%;
+}
+
+.title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 119%;
+  color: #252525;
+}
+
+.widgets {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.tagsWrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.rateWrapper {
+  display: flex;
+}
+
+.rate {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 133%;
+  color: #8e97a6;
+}

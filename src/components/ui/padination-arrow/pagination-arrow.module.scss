@@ -1,0 +1,23 @@
+.button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin-right: 60px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+
+  &:hover {
+    path {
+      fill: #000;
+    }
+  }
+
+  &:disabled {
+    path {
+      fill: #cecece;
+    }
+  }
+}
