@@ -2,35 +2,37 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import "./index.css"
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {Provider} from 'react-redux';
+import {store} from "@/assets/store";
 import MainPage from "@/components/pages/main/main-page";
-import Header from "@/components/layout/header/Header";
-import Footer from "@/components/layout/footer/footer";
 import BlogPage from "@/components/pages/blog/blog-page";
 import NotFound from "@/components/pages/not-found/not-found";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <MainPage />,
+        element: <MainPage/>,
     },
     {
         path: 'blog',
-        element: <BlogPage />
+        element: <BlogPage/>
     },
     {
         path: '*',
-        element: <NotFound />
+        element: <NotFound/>
     }
 ]);
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-      <div className='app'>
-          <RouterProvider router={router} />
-      </div>
-  </React.StrictMode>
+    <React.StrictMode>
+        <Provider store={store}>
+            <div className='app'>
+                <RouterProvider router={router}/>
+            </div>
+        </Provider>
+    </React.StrictMode>
 );
 
