@@ -5,14 +5,15 @@ import Header from "@/components/layout/header/Header";
 import Footer from "@/components/layout/footer/footer";
 import {useDispatch} from "react-redux";
 import {fetchPosts} from "@/features/posts";
+import axios from "axios";
+
+const URL = 'https://dummyjson.com/posts?select=title,reactions,tags,body';
 
 const BlogPage: React.FC = (props) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        fetch('https://dummyjson.com/posts?select=title,reactions,tags,body')
-            .then(res => res.json())
-            .then(({posts}) => dispatch(fetchPosts(posts)));
+        axios.get(URL).then(({data}) => dispatch(fetchPosts(data)));
     }, []);
 
     return (
