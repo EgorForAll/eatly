@@ -9,19 +9,25 @@ import {orders, purchases, recipes, reviews} from "@/mock/mock";
 import Dashboard from "@/components/layout/dashboard/dashboard";
 import Reviews from "@/components/layout/reviews/reviews";
 import Questions from "@/components/layout/questions/questions";
+import Header from "@/components/layout/header/Header";
+import Footer from "@/components/layout/footer/footer";
 
 
 const MainPage: React.FC = () => {
     return (
-        <main className='main'>
-            <Intro/>
-            <Statistics statsList={statsList}/>
-            <Quality/>
-            <Recipes recipes={recipes}/>
-            <Dashboard orders={orders} purchases={purchases}/>
-            <Reviews reviews={reviews}/>
-            <Questions questions={questions}/>
-        </main>
+        <>
+            <Header/>
+            <main className='main'>
+                <Intro/>
+                <Statistics statsList={statsList}/>
+                <Quality/>
+                <Recipes recipes={recipes}/>
+                <Dashboard orders={orders} purchases={purchases}/>
+                <Reviews reviews={reviews}/>
+                <Questions questions={questions}/>
+            </main>
+            <Footer/>
+        </>
     );
 };
 

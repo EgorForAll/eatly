@@ -29,9 +29,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
       <div className='app'>
-          <Header />
           <RouterProvider router={router} />
-          <Footer />
       </div>
   </React.StrictMode>
 );

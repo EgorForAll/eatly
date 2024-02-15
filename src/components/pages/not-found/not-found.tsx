@@ -8,7 +8,7 @@ const NotFound: React.FC = () => {
         <div className='main' style={{padding: '40px'}}>
             <h1>Page not found. 404.</h1>
             <div>
-                <Link to={"/"}>Back to the main page</Link>
+                <Link to={'/'}>Back to the main page</Link>
             </div>
         </div>
     );
