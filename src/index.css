@@ -13,6 +13,14 @@ ul, ol {
     list-style-type: none;
 }
 
+.app {
+    width: 100%;
+}
+
+.main {
+    width: 100%;
+}
+
 .visually-hidden {
     position: absolute;
     width: 1px;
