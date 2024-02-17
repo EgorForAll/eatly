@@ -15,6 +15,12 @@
   margin-top: 95px;
   margin-bottom: 75px;
   text-align: center;
+
+  @media (max-width: 992px) {
+    font-size: 30px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
 }
 
 .colored {
@@ -25,6 +31,10 @@
   margin: 0 120px;
   min-height: 400px;
   position: relative;
+
+  @media (max-width: 992px) {
+    margin: 0 20px;
+  }
 }
 
 .list {
@@ -34,4 +44,10 @@
   row-gap: 40px;
   column-gap: 60px;
   margin-bottom: 65px;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+    column-gap: 20px;
+  }
 }

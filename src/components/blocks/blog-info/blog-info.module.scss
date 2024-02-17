@@ -1,0 +1,71 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+
+.userInfo {
+  display: flex;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background-color: #F29DB0;
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    transform: translate(-4px, 10px);
+    object-fit: cover;
+  }
+}
+
+.userNameWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 15px;
+}
+
+.written {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  color: #8d8d8d;
+}
+
+.name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 153%;
+  color: #000;
+}
+
+.postInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.rating {
+  display: flex;
+}
+
+.number {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 133%;
+  color: #8e97a6;
+  margin-right: 3px;
+}
+
+.tags {
+  display: flex;
+}

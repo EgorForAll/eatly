@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import styles from "./blog.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "@/features/posts";
@@ -27,18 +27,22 @@ const Blog: React.FC = () => {
 
   const currentBlogs = posts?.slice(firstIndex, lastIndex);
 
+  const onScrollTop = () => {
+      window.scrollTo({top: 0, left: 0, behavior: 'smooth'})
+  }
+
   const toggleNext = (page: number) => {
+    onScrollTop()
     setCurrentPage(page);
     setFirstIndex(currentPage * BLOGS_PER_PAGE);
     setLastIndex(firstIndex + BLOGS_PER_PAGE * 2);
-    window.scrollTo(0, 0)
   };
 
   const togglePrev = (page: number) => {
+    onScrollTop()
     setCurrentPage(page);
     setFirstIndex(firstIndex - BLOGS_PER_PAGE);
     setLastIndex(firstIndex);
-    window.scrollTo(0, 0)
   };
 
   return (

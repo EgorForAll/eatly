@@ -1,0 +1,54 @@
+.post {
+  width: 100%;
+  min-height: 500px;
+}
+
+.container {
+  margin: 122px 122px 0;
+}
+
+.title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 37px;
+  line-height: 119%;
+  color: #252525;
+  margin-bottom: 32px;
+}
+
+
+.text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 202%;
+  text-align: justify;
+  color: #252525;
+}
+
+.linkWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 90px;
+}
+
+.backBlogs {
+  width: 186px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border: 2px solid #6C5FBC;
+  border-radius: 12px;
+  span {
+    margin-left: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0.01em;
+    text-transform: capitalize;
+    color: #6c5fbc;
+  }
+}

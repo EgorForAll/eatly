@@ -1,0 +1,31 @@
+.comments {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  margin: 100px 122px 0;
+}
+
+.title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 148%;
+  color: #252525;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment {
+  background-color: #fff;
+  padding: 38px 62px 51px 43px;
+  width: 100%;
+  height: 170px;
+  display: flex;
+  justify-content: space-between;
+}
