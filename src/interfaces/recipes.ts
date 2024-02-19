@@ -1,9 +1,14 @@
 export interface IRecipes {
     image: string;
-    image_small?: string,
-    webp?: string;
-    type: string;
+    tags: string[];
     name: string;
-    rate: number;
-    time: number;
+    rating: number;
+    cookTimeMinutes: number;
+}
+
+export interface  IRequest {
+    recipes: IRecipes[];
+    total: number;
+    skip: number;
+    limit: number;
 }

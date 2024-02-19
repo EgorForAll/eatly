@@ -21,12 +21,10 @@ export const Primary: Story = {
     args: {
         recipe: {
             name: 'The Burger King',
-            type: 'Pizza',
-            time: 24,
-            rate: 4,
-            image: BurgerImage,
-            image_small: BurgerSmall,
-            webp: BurgerImageWebp
+            tags: ['Pizza', 'Italian'],
+            cookTimeMinutes: 24,
+            rating: 4,
+            image: BurgerImage
         }
     },
 };
