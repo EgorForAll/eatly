@@ -6,14 +6,12 @@ import Rating from "@/components/blocks/rating/rating";
 
 type TShortReview = {
     text: string;
-    rate: number;
 };
 
-const ShortReview: React.FC<TShortReview> = ({text, rate}) => {
+const ShortReview: React.FC<TShortReview> = ({text}) => {
     return (
         <div className={styles.shortReview}>
             <ReviewText text={text} />
-            <Rating rate={rate} />
         </div>
     );
 };

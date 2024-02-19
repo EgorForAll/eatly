@@ -1,35 +1,47 @@
 // @flow
-import * as React from 'react';
+import * as React from "react";
 import styles from "./reviews.module.scss";
 import FullReview from "@/components/blocks/full-review/full-review";
-import {IReview} from "@/interfaces/reviews";
+import { IReview } from "@/interfaces/reviews";
 import ShortReview from "@/components/blocks/short-review/short-review";
 import ProgressBar from "@/components/ui/progrees-bar/progress-bar";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-type TReviews = {
-    reviews: IReview[]
-};
+const Reviews: React.FC = () => {
+  const [reviews, setReviews] = useState<IReview[] | []>([]);
 
-const Reviews: React.FC<TReviews> = ({reviews}) => {
+  useEffect(() => {
+    axios
+      .get("https://dummyjson.com/comments")
+      .then(({ data }) => setReviews(data.comments))
+      .catch((e) => console.log(e));
+  }, []);
 
-    const lastReviews = reviews.slice(1)
+  const lastReviews = reviews.slice(1, 6);
+  const firstReview = reviews[0]
 
-    return (
-        <section className={styles.reviews}>
-            <h2 className={styles.title}><span>Customer</span> Say</h2>
-            <div className={styles.container}>
-                <div className={styles.fullReview}>
-                    <FullReview review={reviews[0]} />
-                </div>
-                <div className={styles.shortReviews}>
-                    {lastReviews && lastReviews.map((item, index) => <ShortReview text={item.text} rate={item.rate}  key={index}/>)}
-                </div>
-                <div className={styles.progressBar}>
-                    <ProgressBar progress={29} index={0} />
-                </div>
-            </div>
-        </section>
-    );
+  return (
+    <section className={styles.reviews}>
+      <h2 className={styles.title}>
+        <span>Customer</span> Say
+      </h2>
+      <div className={styles.container}>
+        <div className={styles.fullReview}>
+          {firstReview && <FullReview review={firstReview} />}
+        </div>
+        <div className={styles.shortReviews}>
+          {lastReviews &&
+            lastReviews.map((item, index) => (
+              <ShortReview text={item.body} key={index} />
+            ))}
+        </div>
+        <div className={styles.progressBar}>
+          <ProgressBar progress={29} index={0} />
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Reviews;

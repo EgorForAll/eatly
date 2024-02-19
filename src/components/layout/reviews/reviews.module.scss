@@ -7,7 +7,7 @@
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
   align-items: center;
-  padding: 77px 100px 116px 115px;
+  padding: 77px 100px 70px 115px;
   overflow: hidden;
 
   @media (max-width: 992px) {
@@ -68,11 +68,11 @@
 }
 
 .progressBar {
-  margin-top: 98px;
   margin-left: 1px;
   width: 60%;
   grid-column: 2/3;
   grid-row: 2/3;
+  align-self: flex-end;
 
   @media (max-width: 992px) {
     grid-row: 3/4;
