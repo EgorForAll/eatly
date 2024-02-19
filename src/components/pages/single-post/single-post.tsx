@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import Comments from "@/components/layout/comments/comments";
 
 const SinglePostLayout: React.FC = () => {
+  window.scroll(0, 0)
   const params = useParams();
   const id = params.id;
   return (
