@@ -11,7 +11,7 @@ type TRecipes = {
 const Recipes: React.FC<TRecipes> = ({recipes}) => {
 
     return (
-        <section className={styles.recipes}>
+        <section id='recipes' className={styles.recipes}>
             <h2 className={styles.title}>Our Top <span className={styles.colored}>Recipes</span></h2>
             <div className={styles.container}>
                 <ul className={styles.list}>

@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import styles from "./blog.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "@/features/posts";
@@ -8,7 +8,7 @@ import axios from "axios";
 import { RootState } from "@/assets/store";
 import Article from "@/components/blocks/article/article";
 import Pagination from "@/components/blocks/pagination/pagination";
-import {IRequest} from "@/interfaces/request";
+import { IRequest } from "@/interfaces/request";
 import Loader from "@/components/ui/loader/loader";
 
 const URL = "https://dummyjson.com/posts?select=id,title,reactions,tags,body";
@@ -17,9 +17,10 @@ const Blog: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [lastIndex, setLastIndex] = useState(BLOGS_PER_PAGE);
   const [firstIndex, setFirstIndex] = useState(0);
+  const scrollTo = useRef<HTMLHeadingElement>(null)
   const posts = useSelector((state: RootState) => state.posts.posts);
   const dispatch = useDispatch();
-  const loadPosts = (data: IRequest) => dispatch(fetchPosts(data))
+  const loadPosts = (data: IRequest) => dispatch(fetchPosts(data));
 
   useEffect(() => {
     axios.get(URL).then(({ data }) => loadPosts(data));
@@ -28,18 +29,21 @@ const Blog: React.FC = () => {
   const currentBlogs = posts?.slice(firstIndex, lastIndex);
 
   const onScrollTop = () => {
-      window.scrollTo({top: 0, left: 0, behavior: 'smooth'})
+      if (scrollTo.current) {
+        scrollTo.current.scrollIntoView();
+      }
   }
 
+
   const toggleNext = (page: number) => {
-    onScrollTop()
+    onScrollTop();
     setCurrentPage(page);
     setFirstIndex(currentPage * BLOGS_PER_PAGE);
     setLastIndex(firstIndex + BLOGS_PER_PAGE * 2);
   };
 
   const togglePrev = (page: number) => {
-    onScrollTop()
+    onScrollTop();
     setCurrentPage(page);
     setFirstIndex(firstIndex - BLOGS_PER_PAGE);
     setLastIndex(firstIndex);
@@ -47,7 +51,7 @@ const Blog: React.FC = () => {
 
   return (
     <section className={styles.blog}>
-      <h1 className={styles.mainTitle}>
+      <h1 className={styles.mainTitle} ref={scrollTo}>
         <span className={styles.colored}>Latest</span> Articles{" "}
       </h1>
       <div className={styles.container}>
@@ -57,13 +61,15 @@ const Blog: React.FC = () => {
               <Article post={item} key={index} />
             ))}
         </ul>
-        {!currentBlogs ?  <Loader/> : null}
-        {currentBlogs && <Pagination
+        {!currentBlogs ? <Loader /> : null}
+        {currentBlogs && (
+          <Pagination
             currentPage={currentPage}
             toggleNext={toggleNext}
             togglePrev={togglePrev}
             lastIndex={lastIndex}
-        />}
+          />
+        )}
       </div>
     </section>
   );

@@ -9,7 +9,7 @@ type TQuestions = {
 };
 const Questions: React.FC<TQuestions> = ({questions}) => {
     return (
-        <section className={styles.question}>
+        <section id={'faq'} className={styles.question}>
             <h2 className={styles.title}>Frequently Asked <br/>
                 <span className={styles.colored}>Questions</span></h2>
             <div className={styles.container}>
