@@ -5,6 +5,10 @@
 
 .container {
   margin: 122px 122px 0;
+
+  @media (max-width: 992px) {
+    margin: 40px 20px;
+  }
 }
 
 .title {
@@ -14,6 +18,10 @@
   line-height: 119%;
   color: #252525;
   margin-bottom: 32px;
+
+  @media (max-width: 992px) {
+    font-size: 30px;
+  }
 }
 
 
@@ -24,6 +32,11 @@
   line-height: 202%;
   text-align: justify;
   color: #252525;
+
+  @media (max-width: 992px) {
+    font-size: 15px;
+    line-height: 180%;
+  }
 }
 
 .linkWrapper {
@@ -31,6 +44,10 @@
   display: flex;
   justify-content: flex-start;
   margin-top: 90px;
+
+  @media (max-width: 992px) {
+    margin-top: 30px;
+  }
 }
 
 .backBlogs {
@@ -42,6 +59,12 @@
   text-decoration: none;
   border: 2px solid #6C5FBC;
   border-radius: 12px;
+
+  @media (max-width: 992px) {
+    width: 140px;
+    height: 50px;
+  }
+
   span {
     margin-left: 5px;
     font-family: 'Poppins', sans-serif;
@@ -50,5 +73,9 @@
     letter-spacing: 0.01em;
     text-transform: capitalize;
     color: #6c5fbc;
+
+    @media (max-width: 992px) {
+      font-size: 14px;
+    }
   }
 }

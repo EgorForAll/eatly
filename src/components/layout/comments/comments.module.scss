@@ -6,6 +6,10 @@
 
 .container {
   margin: 100px 122px 0;
+
+  @media (max-width: 992px) {
+    margin: 0 20px;
+  }
 }
 
 .title {
@@ -14,11 +18,21 @@
   font-size: 30px;
   line-height: 148%;
   color: #252525;
+  margin-bottom: 70px;
+
+  @media (max-width: 992px) {
+    margin-bottom: 30px;
+    font-size: 25px;
+  }
 }
 
 .list {
   display: flex;
   flex-direction: column;
+  margin-bottom: 100px;
+  @media (max-width: 992px) {
+    margin-bottom: 50px;
+  }
 }
 
 .comment {

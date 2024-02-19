@@ -21,6 +21,7 @@ const BlogInfo: React.FC<TBlogInfo> = ({user, post}) => {
                         alt={`avatar of ${user?.firstName}`}
                         width={56}
                         height={56}
+                        sizes="(max-width=992px) 50px, 50px"
                     />
                 </div>
                 <div className={styles.userNameWrapper}>

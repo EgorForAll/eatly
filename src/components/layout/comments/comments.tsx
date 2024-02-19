@@ -4,6 +4,7 @@ import styles from "./comments.module.scss";
 import {useEffect, useState} from "react";
 import {IComment} from "@/interfaces/comment";
 import axios from "axios";
+import Comment from "@/components/blocks/comment/comment";
 
 type TComments = {
     id: string | undefined;
@@ -28,6 +29,7 @@ const Comments: React.FC<TComments> = ({id}) => {
             <>
               <h2 className={styles.title}>Comments</h2>
               <ul className={styles.list}>
+                  {comments && comments.map((item, index) => <Comment comment={item} key={index} />)}
               </ul>
             </>
           ) : null}

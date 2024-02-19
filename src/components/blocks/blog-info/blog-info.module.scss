@@ -2,6 +2,11 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 60px;
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
 }
 
 .userInfo {
@@ -18,9 +23,18 @@
   border-radius: 50%;
   overflow: hidden;
 
+  @media (max-width: 992px) {
+    width: 60px;
+    height: 60px;
+  }
+
   img {
     transform: translate(-4px, 10px);
     object-fit: cover;
+
+    @media (max-width: 992px) {
+      transform: translate(0, 5px);
+    }
   }
 }
 
@@ -36,6 +50,9 @@
   font-weight: 400;
   font-size: 15px;
   color: #8d8d8d;
+  @media (max-width: 992px) {
+    font-size: 11px;
+  }
 }
 
 .name {
@@ -44,6 +61,10 @@
   font-size: 17px;
   line-height: 153%;
   color: #000;
+
+  @media (max-width: 992px) {
+    font-size: 14px;
+  }
 }
 
 .postInfo {
@@ -51,6 +72,10 @@
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
+
+  @media (max-width: 992px) {
+    margin-top: 10px;
+  }
 }
 
 .rating {
