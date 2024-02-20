@@ -35,6 +35,10 @@
 
 .logoWrapper {
   transform: translate(0, -15px);
+
+  * {
+    text-decoration: none;
+  }
 }
 
 .link {

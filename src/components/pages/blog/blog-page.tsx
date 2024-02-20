@@ -3,8 +3,13 @@ import * as React from 'react';
 import Header from "@/components/layout/header/Header";
 import Footer from "@/components/layout/footer/footer";
 import Blog from "@/components/layout/blog/blog";
+import {useEffect} from "react";
 
 const BlogPage: React.FC = (props) => {
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);
+
     return (
         <>
             <Header/>
