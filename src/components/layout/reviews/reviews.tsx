@@ -5,8 +5,9 @@ import FullReview from "@/components/blocks/full-review/full-review";
 import { IReview } from "@/interfaces/reviews";
 import ShortReview from "@/components/blocks/short-review/short-review";
 import ProgressBar from "@/components/ui/progrees-bar/progress-bar";
-import { useEffect, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import axios from "axios";
+import { detectFirefox } from "@/utils/utils";
 
 const Reviews: React.FC = () => {
   const [reviews, setReviews] = useState<IReview[] | []>([]);
@@ -18,8 +19,15 @@ const Reviews: React.FC = () => {
       .catch((e) => console.log(e));
   }, []);
 
+  const isFirefox = detectFirefox();
+  const scrollStyle: CSSProperties = {
+    scrollbarWidth: "thin",
+    scrollMargin: "0 100px 0 0",
+    scrollbarColor: "#675BB1 #cecbde",
+  };
+
   const lastReviews = reviews.slice(1, 6);
-  const firstReview = reviews[0]
+  const firstReview = reviews[0];
 
   return (
     <section className={styles.reviews}>
@@ -30,15 +38,15 @@ const Reviews: React.FC = () => {
         <div className={styles.fullReview}>
           {firstReview && <FullReview review={firstReview} />}
         </div>
-        <div className={styles.shortReviews}>
+        <ul
+          className={styles.shortReviewsList}
+          style={isFirefox ? scrollStyle : undefined}
+        >
           {lastReviews &&
             lastReviews.map((item, index) => (
               <ShortReview text={item.body} key={index} />
             ))}
-        </div>
-        <div className={styles.progressBar}>
-          <ProgressBar progress={29} index={0} />
-        </div>
+        </ul>
       </div>
     </section>
   );

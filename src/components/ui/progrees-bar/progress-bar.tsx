@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import styles from "./progress-bar.module.scss";
+import Slider from '@mui/material/Slider';
 
 type TProgressBar = {
     progress: number;
@@ -8,6 +9,12 @@ type TProgressBar = {
 };
 
 const ProgressBar: React.FC<TProgressBar> = ({progress, index}) => {
+
+    const [value, setValue] = React.useState<number>(30);
+
+    const handleChange = (event: Event, newValue: number | number[]) => {
+        setValue(newValue as number);
+    };
 
     const colors = ['108, 95, 188', '251, 173, 24'];
     const currentColor = colors[index];
@@ -24,7 +31,7 @@ const ProgressBar: React.FC<TProgressBar> = ({progress, index}) => {
 
     return (
         <div style={BACK_LINE} className={styles.progressWrapper}>
-            <span style={PROGRESS_LINE} className={styles.progressBar}></span>
+            <Slider aria-label="Volume" value={value} onChange={handleChange} />
         </div>
     );
 };

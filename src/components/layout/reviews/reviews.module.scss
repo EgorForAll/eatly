@@ -5,10 +5,9 @@
 .container {
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto;
   align-items: center;
-  padding: 77px 100px 70px 115px;
-  overflow: hidden;
+  padding: 77px 0 70px 115px;
 
   @media (max-width: 992px) {
     display: grid;
@@ -51,34 +50,70 @@
     grid-row: 1/2;
     grid-column: 1/2;
     margin-right: 0;
-    margin-bottom: 45px;
+    margin-bottom: 20px;
   }
 }
 
-.shortReviews {
-  display: flex;
+
+.shortReviewsList {
   grid-column: 2/3;
   grid-row: 1/2;
+  overflow-x: scroll;
+  display: grid;
+  grid-template-columns: repeat(5, 500px);
+  grid-template-rows: 1fr;
+  column-gap: 20px;
+  row-gap: 30px;
+  height: 160px;
+
+  //Scrollbar
+  &::-webkit-scrollbar {
+    height: 12px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #CECCDE;
+    margin-right: 100px;
+
+    @media (max-width: 992px) {
+      margin-right: 0;
+    }
+  }
+
+  &::-webkit-scrollbar-track:hover {
+    background-color: #cecbde;
+  }
+
+  &::-webkit-scrollbar-track:active {
+    background-color: #cecbde;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #675BB1;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #675BB1;
+  }
+
+  &::-webkit-scrollbar-thumb:active {
+    background-color: #675BB1;
+  }
+
+
 
   @media (max-width: 992px) {
     grid-column: 1/2;
     grid-row: 2/3;
-    display: flex;
+    height: auto;
+    column-gap: 0;
+    row-gap: 10px;
+    grid-template-columns: repeat(5, 300px);
+    margin-bottom: 30px;
   }
 }
 
-.progressBar {
-  margin-left: 1px;
-  width: 60%;
-  grid-column: 2/3;
-  grid-row: 2/3;
-  align-self: flex-end;
 
-  @media (max-width: 992px) {
-    grid-row: 3/4;
-    grid-column: 1/2;
-    width: 75%;
-    margin-bottom: 40px;
-    margin-top: 55px;
-  }
-}
+

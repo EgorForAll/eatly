@@ -10,9 +10,9 @@ type TShortReview = {
 
 const ShortReview: React.FC<TShortReview> = ({text}) => {
     return (
-        <div className={styles.shortReview}>
+        <li className={styles.shortReview}>
             <ReviewText text={text} />
-        </div>
+        </li>
     );
 };
 

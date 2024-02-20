@@ -34,6 +34,10 @@ ul, ol {
     overflow: hidden;
 }
 
+body::-webkit-scrollbar-button {
+    display: none;
+}
+
 @font-face {
     font-family: 'Poppins', sans-serif;
     src: url('./assets/fonts/poppins/Poppins-Regular.ttf') format("ttf");

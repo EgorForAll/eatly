@@ -1,13 +1,14 @@
 .shortReview {
-  width: 529px;
+  width: 500px;
   background-color: #fff;
   border-radius: 20px;
   padding: 20px 48px;
   display: flex;
   flex-direction: column;
-  margin-right: 46px;
-  box-shadow: 6px 5px 16px 15px #d2d2d2;
-  overflow: hidden;
+  margin: 20px 46px 20px 20px;
+  height: 100px;
+  scroll-snap-align: center;
+  box-shadow: 6px 5px 18px 4px #d2d2d2;
   &:last-child {
     margin-right: 0;
   }
@@ -19,9 +20,15 @@
   }
 
   @media (max-width: 992px) {
-    width: 250px;
+    width: auto;
     padding: 20px;
-    margin-right: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     box-shadow: 3px 2px 10px 10px #d2d2d2;
+    height: 100px;
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
+
