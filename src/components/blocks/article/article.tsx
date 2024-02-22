@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import { IPost } from "@/interfaces/post";
+import {IPostUser} from "@/interfaces/post-user";
 import styles from "./article.module.scss";
 import Tag from "@/components/ui/tag/tag";
 import { ReactComponent as Star } from "@/assets/images/blog-star.svg";
@@ -15,14 +16,43 @@ type TArticle = {
   post: IPost;
 };
 
+
 const Article: React.FC<TArticle> = ({ post }) => {
   const [user, setUser] = useState<IUser | null>(null);
+
+  // В данном компоненте предусмотрено кэширование пользователей. В localStorage сохраняется массив из объектов, по которым можно определить за каким пользователем какой пост закреплен. При повторном рендеринге, тем самым, запрос не происходит, а данные о пользователе берутся из этого массива.
+
   useEffect(() => {
+    const userPostsJson: any = localStorage.getItem("user_posts");
+    const userPostsArr: IPostUser[]  = JSON.parse(userPostsJson);
+
+    const currentPost = userPostsArr.find(
+      (item: IPostUser) => item.postId === post.id
+    );
+    if (currentPost) {
+      setUser(currentPost.user);
+      return;
+    }
     axios
       .get(
         `https://dummyjson.com/users/${post.userId}?select=firstName,lastName,image,body`
       )
-      .then(({ data }) => setUser(data))
+      .then(({ data }) => {
+        setUser(data);
+        const userPost: IPostUser = {
+          postId: post.id,
+          user: data,
+        };
+        const userPostsJson = localStorage.getItem("user_posts");
+        if (userPostsJson) {
+          const userPostsArr = JSON.parse(userPostsJson);
+          const postUserArrUpdated: IPostUser[] = [...userPostsArr, userPost];
+          localStorage.setItem(
+            "user_posts",
+            JSON.stringify(postUserArrUpdated)
+          );
+        }
+      })
       .catch((e) => console.log(e));
   }, []);
 
@@ -34,23 +64,23 @@ const Article: React.FC<TArticle> = ({ post }) => {
             <h3 className={styles.title}>{post.title}</h3>
           </header>
           <div className={styles.widgets}>
-            <UserInfo user={user} width={40} height={40}/>
+            <UserInfo user={user} width={40} height={40} />
             <div className={styles.rateWrapper}>
               <span className={styles.rate}>{post.reactions}</span>
-              <Star/>
+              <Star />
             </div>
           </div>
           <div className={styles.tagsWrapper}>
             {post.tags &&
-                post.tags.map((item, index) => (
-                    <Tag tag={item} key={index} tags={post.tags}/>
-                ))}
+              post.tags.map((item, index) => (
+                <Tag tag={item} key={index} tags={post.tags} />
+              ))}
           </div>
           <TextTruncate
-              element="p"
-              line={3}
-              truncateText="..."
-              text={post.body}
+            element="p"
+            line={3}
+            truncateText="..."
+            text={post.body}
           />
         </article>
       </Link>

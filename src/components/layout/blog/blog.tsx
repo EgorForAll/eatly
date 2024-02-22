@@ -20,9 +20,14 @@ const Blog: React.FC = () => {
   const scrollTo = useRef<HTMLHeadingElement>(null)
   const posts = useSelector((state: RootState) => state.posts.posts);
   const dispatch = useDispatch();
+
   const loadPosts = (data: IRequest) => dispatch(fetchPosts(data));
 
   useEffect(() => {
+    const postsUsersJson = localStorage.getItem('user_posts');
+    if (!postsUsersJson) {
+      localStorage.setItem('user_posts', JSON.stringify([]))
+    }
     axios.get(URL).then(({ data }) => loadPosts(data));
   }, []);
 
