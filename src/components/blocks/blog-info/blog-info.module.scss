@@ -9,63 +9,6 @@
   }
 }
 
-.userInfo {
-  display: flex;
-}
-
-.avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
-  height: 80px;
-  background-color: #F29DB0;
-  border-radius: 50%;
-  overflow: hidden;
-
-  @media (max-width: 992px) {
-    width: 60px;
-    height: 60px;
-  }
-
-  img {
-    transform: translate(-4px, 10px);
-    object-fit: cover;
-
-    @media (max-width: 992px) {
-      transform: translate(0, 5px);
-    }
-  }
-}
-
-.userNameWrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 15px;
-}
-
-.written {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  font-size: 15px;
-  color: #8d8d8d;
-  @media (max-width: 992px) {
-    font-size: 11px;
-  }
-}
-
-.name {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  font-size: 17px;
-  line-height: 153%;
-  color: #000;
-
-  @media (max-width: 992px) {
-    font-size: 14px;
-  }
-}
 
 .postInfo {
   display: flex;

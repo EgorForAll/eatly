@@ -11,7 +11,7 @@ import Pagination from "@/components/blocks/pagination/pagination";
 import { IRequest } from "@/interfaces/request";
 import Loader from "@/components/ui/loader/loader";
 
-const URL = "https://dummyjson.com/posts?select=id,title,reactions,tags,body";
+const URL = "https://dummyjson.com/posts?select=id,title,reactions,tags,body,userId";
 const BLOGS_PER_PAGE = 12;
 const Blog: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);

@@ -5,6 +5,7 @@ import {IPost} from "@/interfaces/post";
 import Tag from "@/components/ui/tag/tag";
 import styles from "./blog-info.module.scss";
 import {ReactComponent as Star} from "@/assets/images/blog-star.svg";
+import UserInfo from "@/components/blocks/user-info/user-info";
 
 type TBlogInfo = {
     user: IUser;
@@ -14,23 +15,7 @@ type TBlogInfo = {
 const BlogInfo: React.FC<TBlogInfo> = ({user, post}) => {
     return (
         <header className={styles.header}>
-            <div className={styles.userInfo}>
-                <div className={styles.avatar}>
-                    <img
-                        src={user?.image}
-                        alt={`avatar of ${user?.firstName}`}
-                        width={56}
-                        height={56}
-                        sizes="(max-width=992px) 50px, 50px"
-                    />
-                </div>
-                <div className={styles.userNameWrapper}>
-                    <span className={styles.written}>Written by</span>
-                    <span className={styles.name}>
-                    {user?.firstName} {user?.lastName}
-                  </span>
-                </div>
-            </div>
+            <UserInfo user={user} width={56} height={56}/>
             <div className={styles.postInfo}>
                 <div className={styles.rating}>
                     <span className={styles.number}>{post?.reactions}</span>
