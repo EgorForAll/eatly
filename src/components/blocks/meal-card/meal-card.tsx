@@ -43,6 +43,7 @@ const MealCard: React.FC<IMealCard> = ({ recipe }) => {
       onMouseOver={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       ref={cardRef}
+      data-testid={'meal-card'}
     >
       <div className={styles.imageWrapper}>
         <img
@@ -70,8 +71,8 @@ const MealCard: React.FC<IMealCard> = ({ recipe }) => {
             <span className={styles.text}>{recipe.rating}</span>
           </div>
         </div>
-        <div ref={bookMarkRef} className={styles.right}>
-          <Bookmark />
+        <div ref={bookMarkRef} className={styles.right} data-testid={'bookmark'} >
+          <Bookmark/>
         </div>
       </div>
     </li>

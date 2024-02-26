@@ -21,7 +21,7 @@ const Recipes: React.FC = () => {
             <h2 className={styles.title}>Our Top <span className={styles.colored}>Recipes</span></h2>
             <div className={styles.container}>
                 <ul className={styles.list}>
-                    {popularRecipes && popularRecipes.map((item, index) => <MealCard recipe={item} key={index}/>)}
+                    {popularRecipes && popularRecipes.map((item, index) => <MealCard recipe={item} key={index} data-testid={'recipe-item'}/>)}
                 </ul>
             </div>
         </section>

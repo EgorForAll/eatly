@@ -18,7 +18,7 @@ const Dropdown: React.FC<TDropdown> = ({question}) => {
         <li className={styles.dropdown}>
             <header className={styles.header}>
                 <h3 className={styles.title}>{question.title}</h3>
-                <button className={styles.button} onClick={() => setOpened(!opened)}>
+                <button data-testid={'toggle-button'} className={styles.button} onClick={() => setOpened(!opened)}>
                     {opened ? <Minus/> : <Plus />}
                 </button>
             </header>
