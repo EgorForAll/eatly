@@ -19,10 +19,6 @@ const ProgressBar: React.FC<TProgressBar> = ({progress, index}) => {
     const colors = ['108, 95, 188', '251, 173, 24'];
     const currentColor = colors[index];
 
-    const PROGRESS_LINE = {
-        width: progress + '%',
-        backgroundColor: `rgb(${currentColor})`,
-    }
 
     const BACK_LINE = {
         backgroundColor:`rgba(${currentColor}, 0.2)`

@@ -1,52 +1,4 @@
-.comments {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
 
-.container {
-  margin: 100px 122px 0;
-
-  @media (max-width: 992px) {
-    margin: 0 20px;
-  }
-}
-
-.title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: 30px;
-  line-height: 148%;
-  color: #252525;
-  margin-bottom: 70px;
-
-  @media (max-width: 992px) {
-    margin-bottom: 30px;
-    font-size: 25px;
-  }
-}
-
-.list {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 100px;
-  @media (max-width: 992px) {
-    margin-bottom: 50px;
-  }
-}
-
-.comment {
-  background-color: #fff;
-  padding: 38px 62px 51px 43px;
-  width: 100%;
-  height: 170px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.colored {
-  color: #6c5fbc;;
-}
 
 .form {
   width: 100%;
@@ -129,4 +81,8 @@
   font-weight: 600;
   line-height: 23px;
   margin-bottom: 20px;
+}
+
+.colored {
+  color: #6c5fbc;;
 }

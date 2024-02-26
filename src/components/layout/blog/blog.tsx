@@ -11,9 +11,8 @@ import Pagination from "@/components/blocks/pagination/pagination";
 import { IRequest } from "@/interfaces/request";
 import Loader from "@/components/ui/loader/loader";
 
-const URL =
-  "https://dummyjson.com/posts?select=id,title,reactions,tags,body,userId";
 const BLOGS_PER_PAGE = 12;
+
 const Blog: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [lastIndex, setLastIndex] = useState(BLOGS_PER_PAGE);
@@ -23,17 +22,25 @@ const Blog: React.FC = () => {
   const posts = useSelector((state: RootState) => state.posts.posts);
   const dispatch = useDispatch();
 
-  const loadPosts = (data: IRequest) => dispatch(fetchPosts(data));
+  const addToRedux = (data: IRequest) => dispatch(fetchPosts(data));
+
+  const loadPosts = () =>
+    axios
+      .get(
+        "https://dummyjson.com/posts?select=id,title,reactions,tags,body,userId"
+      )
+      .then(({ data }) => addToRedux(data))
+      .then(() => setError(""))
+      .catch((e: { message: React.SetStateAction<string> }) =>
+        setError(e.message)
+      );
 
   useEffect(() => {
     const postsUsersJson = localStorage.getItem("user_posts");
     if (!postsUsersJson) {
       localStorage.setItem("user_posts", JSON.stringify([]));
     }
-    axios
-      .get(URL)
-      .then(({ data }) => loadPosts(data))
-      .catch((e) => setError(e.message));
+    loadPosts();
   }, []);
 
   const currentBlogs = posts?.slice(firstIndex, lastIndex);

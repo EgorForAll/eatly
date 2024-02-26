@@ -1,10 +1,9 @@
 // @flow
 import * as React from "react";
-import styles from "./reviews.module.scss";
+import styles from "./reviews.module.scss"
 import FullReview from "@/components/blocks/full-review/full-review";
 import { IReview } from "@/interfaces/reviews";
 import ShortReview from "@/components/blocks/short-review/short-review";
-import ProgressBar from "@/components/ui/progrees-bar/progress-bar";
 import { CSSProperties, useEffect, useState } from "react";
 import axios from "axios";
 import { detectFirefox } from "@/utils/utils";
@@ -16,7 +15,7 @@ const Reviews: React.FC = () => {
     axios
       .get("https://dummyjson.com/comments")
       .then(({ data }) => setReviews(data.comments))
-      .catch((e) => console.log(e));
+      .catch((e) => console.error(e));
   }, []);
 
   const isFirefox = detectFirefox();
@@ -35,18 +34,22 @@ const Reviews: React.FC = () => {
         <span>Customer</span> Say
       </h2>
       <div className={styles.container}>
-        <div className={styles.fullReview}>
-          {firstReview && <FullReview review={firstReview} />}
-        </div>
-        <ul
-          className={styles.shortReviewsList}
-          style={isFirefox ? scrollStyle : undefined}
-        >
-          {lastReviews &&
-            lastReviews.map((item, index) => (
-              <ShortReview text={item.body} key={index} />
-            ))}
-        </ul>
+        {reviews.length > 0 ? (
+          <>
+            <div className={styles.fullReview}>
+              {firstReview && <FullReview review={firstReview} />}
+            </div>
+            <ul
+              className={styles.shortReviewsList}
+              style={isFirefox ? scrollStyle : undefined}
+            >
+              {lastReviews &&
+                lastReviews.map((item, index) => (
+                  <ShortReview text={item.body} key={index} />
+                ))}
+            </ul>
+          </>
+        ) : <h3 className={styles.notFound}>Отзывы не найдены</h3>}
       </div>
     </section>
   );

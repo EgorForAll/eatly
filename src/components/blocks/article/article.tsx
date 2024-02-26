@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { IUser } from "@/interfaces/user";
 import axios from "axios";
 import UserInfo from "@/components/blocks/user-info/user-info";
+import {getFromLs} from "@/utils/utils";
 
 type TArticle = {
   post: IPost;
@@ -22,22 +23,8 @@ const Article: React.FC<TArticle> = ({ post }) => {
 
   // В данном компоненте предусмотрено кэширование пользователей. В localStorage сохраняется массив из объектов, по которым можно определить за каким пользователем какой пост закреплен. При повторном рендеринге, тем самым, запрос не происходит, а данные о пользователе берутся из этого массива.
 
-  useEffect(() => {
-    const userPostsJson: any = localStorage.getItem("user_posts");
-
-    if (userPostsJson) {
-      const userPostsArr: IPostUser[] = JSON.parse(userPostsJson);
-
-      const currentPost = userPostsArr.find(
-        (item: IPostUser) => item.postId === post.id
-      );
-      if (currentPost) {
-        setUser(currentPost.user);
-        return;
-      }
-    }
-
-    axios
+  const fetchUser = async () => {
+    await axios
       .get(
         `https://dummyjson.com/users/${post.userId}?select=firstName,lastName,image,body`
       )
@@ -58,6 +45,15 @@ const Article: React.FC<TArticle> = ({ post }) => {
         }
       })
       .catch(() => setError(true));
+  };
+
+  useEffect(() => {
+  const currentPost = getFromLs(post.id)
+    if (currentPost) {
+      setUser(currentPost.user)
+    } else  {
+      fetchUser()
+    }
   }, []);
 
   return (
@@ -68,7 +64,11 @@ const Article: React.FC<TArticle> = ({ post }) => {
             <h3 className={styles.title}>{post.title}</h3>
           </header>
           <div className={styles.widgets}>
-            {!error ? <UserInfo user={user} width={40} height={40} /> : <span style={{color: 'red'}}>Не удалось найти автора</span>}
+            {!error ? (
+              <UserInfo user={user} width={40} height={40} />
+            ) : (
+              <span style={{ color: "red" }}>Не удалось найти автора</span>
+            )}
             <div className={styles.rateWrapper}>
               <span className={styles.rate}>{post.reactions}</span>
               <Star />

@@ -9,8 +9,7 @@ import { IUser } from "@/interfaces/user";
 import Loader from "@/components/ui/loader/loader";
 import BlogInfo from "@/components/blocks/blog-info/blog-info";
 import { ReactComponent as Arrow } from "@/assets/images/arrow-left.svg";
-import { IPostUser } from "@/interfaces/post-user";
-import {useDispatch} from "react-redux";
+import { getFromLs } from "@/utils/utils";
 
 type TSinglePost = {
   id: string | undefined;
@@ -21,41 +20,39 @@ const SinglePost: React.FC<TSinglePost> = ({ id }) => {
   const [user, setUser] = useState<IUser | null>(null);
   const [errorUser, setErrorUser] = useState<string>("");
   const [errorPost, setErrorPost] = useState<string>("");
-  const [isLoading,  setLoading] = useState<boolean>(false)
+  const [isLoading, setLoading] = useState<boolean>(false);
 
-  // В данном компоненте производится проверка на наличие ифнормации о пользователе в в localStorage. Если его нет в localStorage, то производится запрос на сервер
+  const fetchUser = async () =>
+    await axios
+      .get(`https://dummyjson.com/users/${id}?select=firstName,lastName,image`)
+      .then(({ data }) => {
+        setUser(data);
+      })
+      .catch(() => setErrorUser("Не удается загрузить автора"));
 
-  useEffect(() => {
-      setLoading(true)
-      setErrorPost('')
-      setErrorUser('')
-    axios
+  const loadPost = async () =>
+    await axios
       .get(`https://dummyjson.com/post/${id}`)
       .then(({ data }) => {
         setPost(data);
-
-        const userPostsJson: any = localStorage.getItem("user_posts");
-        if (userPostsJson) {
-          const userPostsArr: IPostUser[] = JSON.parse(userPostsJson);
-          const currentPost = userPostsArr.find(
-            (item) => item.postId === Number(id)
-          );
-
-          if (currentPost) {
-            setUser(currentPost.user);
-            return;
-          }
-        } else {
-          axios
-            .get(
-              `https://dummyjson.com/users/${data.userId}?select=firstName,lastName,image`
-            )
-            .then(({ data }) => setUser(data))
-            .catch(() => setErrorUser("Не удается загрузить автора"));
-        }
       })
-      .catch(() => setErrorPost("Не удается загрузить пост")).finally(() => setLoading(false));
-  }, []);
+      .catch(() => setErrorPost("Не удается загрузить пост"))
+      .finally(() => setLoading(false));
+
+  // В данном компоненте производится проверка на наличие ифнормации о пользователе localStorage. Если его нет в localStorage, то производится запрос на сервер
+
+  useEffect(() => {
+    setLoading(true);
+    setErrorPost("");
+    setErrorUser("");
+    loadPost();
+    const currentPost = getFromLs(Number(id));
+    if (currentPost) {
+      setUser(currentPost.user);
+    } else {
+      fetchUser();
+    }
+  }, [id]);
 
   return (
     <section className={styles.post}>
