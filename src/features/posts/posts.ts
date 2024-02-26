@@ -24,7 +24,7 @@ export const postsSlice = createSlice({
     },
 })
 
-// Action creators are generated for each case reducer function
+
 export const { fetchPosts } = postsSlice.actions
 
 export default postsSlice.reducer

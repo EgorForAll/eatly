@@ -1,4 +1,5 @@
 export interface IRecipes {
+    id?: number;
     image: string;
     tags: string[];
     name: string;

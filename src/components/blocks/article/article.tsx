@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import { IPost } from "@/interfaces/post";
-import {IPostUser} from "@/interfaces/post-user";
+import { IPostUser } from "@/interfaces/post-user";
 import styles from "./article.module.scss";
 import Tag from "@/components/ui/tag/tag";
 import { ReactComponent as Star } from "@/assets/images/blog-star.svg";
@@ -16,23 +16,27 @@ type TArticle = {
   post: IPost;
 };
 
-
 const Article: React.FC<TArticle> = ({ post }) => {
   const [user, setUser] = useState<IUser | null>(null);
+  const [error, setError] = useState<boolean>(false);
 
   // В данном компоненте предусмотрено кэширование пользователей. В localStorage сохраняется массив из объектов, по которым можно определить за каким пользователем какой пост закреплен. При повторном рендеринге, тем самым, запрос не происходит, а данные о пользователе берутся из этого массива.
 
   useEffect(() => {
     const userPostsJson: any = localStorage.getItem("user_posts");
-    const userPostsArr: IPostUser[]  = JSON.parse(userPostsJson);
 
-    const currentPost = userPostsArr.find(
-      (item: IPostUser) => item.postId === post.id
-    );
-    if (currentPost) {
-      setUser(currentPost.user);
-      return;
+    if (userPostsJson) {
+      const userPostsArr: IPostUser[] = JSON.parse(userPostsJson);
+
+      const currentPost = userPostsArr.find(
+        (item: IPostUser) => item.postId === post.id
+      );
+      if (currentPost) {
+        setUser(currentPost.user);
+        return;
+      }
     }
+
     axios
       .get(
         `https://dummyjson.com/users/${post.userId}?select=firstName,lastName,image,body`
@@ -53,7 +57,7 @@ const Article: React.FC<TArticle> = ({ post }) => {
           );
         }
       })
-      .catch((e) => console.log(e));
+      .catch(() => setError(true));
   }, []);
 
   return (
@@ -64,7 +68,7 @@ const Article: React.FC<TArticle> = ({ post }) => {
             <h3 className={styles.title}>{post.title}</h3>
           </header>
           <div className={styles.widgets}>
-            <UserInfo user={user} width={40} height={40} />
+            {!error ? <UserInfo user={user} width={40} height={40} /> : <span style={{color: 'red'}}>Не удалось найти автора</span>}
             <div className={styles.rateWrapper}>
               <span className={styles.rate}>{post.reactions}</span>
               <Star />

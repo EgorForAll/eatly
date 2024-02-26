@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
-import { store } from "@/assets/store";
+import { store } from "@/assets/store/index";
 import MainPage from "@/components/pages/main/main-page";
 import BlogPage from "@/components/pages/blog/blog-page";
 import NotFound from "@/components/pages/not-found/not-found";

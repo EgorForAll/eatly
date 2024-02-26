@@ -1,44 +1,48 @@
 // @flow
 import * as React from "react";
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./blog.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPosts } from "@/features/posts";
+import { fetchPosts } from "@/features/posts/posts";
 import axios from "axios";
-import { RootState } from "@/assets/store";
+import { RootState } from "src/assets/store";
 import Article from "@/components/blocks/article/article";
 import Pagination from "@/components/blocks/pagination/pagination";
 import { IRequest } from "@/interfaces/request";
 import Loader from "@/components/ui/loader/loader";
 
-const URL = "https://dummyjson.com/posts?select=id,title,reactions,tags,body,userId";
+const URL =
+  "https://dummyjson.com/posts?select=id,title,reactions,tags,body,userId";
 const BLOGS_PER_PAGE = 12;
 const Blog: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [lastIndex, setLastIndex] = useState(BLOGS_PER_PAGE);
   const [firstIndex, setFirstIndex] = useState(0);
-  const scrollTo = useRef<HTMLHeadingElement>(null)
+  const [error, setError] = useState<string>("");
+  const scrollTo = useRef<HTMLHeadingElement>(null);
   const posts = useSelector((state: RootState) => state.posts.posts);
   const dispatch = useDispatch();
 
   const loadPosts = (data: IRequest) => dispatch(fetchPosts(data));
 
   useEffect(() => {
-    const postsUsersJson = localStorage.getItem('user_posts');
+    const postsUsersJson = localStorage.getItem("user_posts");
     if (!postsUsersJson) {
-      localStorage.setItem('user_posts', JSON.stringify([]))
+      localStorage.setItem("user_posts", JSON.stringify([]));
     }
-    axios.get(URL).then(({ data }) => loadPosts(data));
+    axios
+      .get(URL)
+      .then(({ data }) => loadPosts(data))
+      .catch((e) => setError(e.message));
   }, []);
 
   const currentBlogs = posts?.slice(firstIndex, lastIndex);
 
   const onScrollTop = () => {
-      if (scrollTo.current) {
-        scrollTo.current.scrollIntoView();
-      }
-  }
-
+    if (scrollTo.current) {
+      scrollTo.current.scrollIntoView();
+    }
+  };
 
   const toggleNext = (page: number) => {
     onScrollTop();
@@ -66,7 +70,8 @@ const Blog: React.FC = () => {
               <Article post={item} key={index} />
             ))}
         </ul>
-        {!currentBlogs ? <Loader /> : null}
+        {error ? <h2 className={styles.error}>{error}</h2> : null}
+        {!currentBlogs && !error ? <Loader /> : null}
         {currentBlogs && (
           <Pagination
             currentPage={currentPage}

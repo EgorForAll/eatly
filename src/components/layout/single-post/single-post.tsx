@@ -9,7 +9,8 @@ import { IUser } from "@/interfaces/user";
 import Loader from "@/components/ui/loader/loader";
 import BlogInfo from "@/components/blocks/blog-info/blog-info";
 import { ReactComponent as Arrow } from "@/assets/images/arrow-left.svg";
-import {IPostUser} from "@/interfaces/post-user";
+import { IPostUser } from "@/interfaces/post-user";
+import {useDispatch} from "react-redux";
 
 type TSinglePost = {
   id: string | undefined;
@@ -18,41 +19,48 @@ type TSinglePost = {
 const SinglePost: React.FC<TSinglePost> = ({ id }) => {
   const [post, setPost] = useState<IPost | null>(null);
   const [user, setUser] = useState<IUser | null>(null);
+  const [errorUser, setErrorUser] = useState<string>("");
+  const [errorPost, setErrorPost] = useState<string>("");
+  const [isLoading,  setLoading] = useState<boolean>(false)
 
-    // В данном компоненте производится проверка на наличие ифнормации о пользователе в в localStorage. Если его нет в localStorage, то производится запрос на сервер
+  // В данном компоненте производится проверка на наличие ифнормации о пользователе в в localStorage. Если его нет в localStorage, то производится запрос на сервер
 
   useEffect(() => {
+      setLoading(true)
+      setErrorPost('')
+      setErrorUser('')
     axios
-      .get(`https://dummyjson.com/posts/${id}`)
+      .get(`https://dummyjson.com/post/${id}`)
       .then(({ data }) => {
         setPost(data);
 
-          const userPostsJson: any = localStorage.getItem("user_posts");
-          if (userPostsJson) {
-              const userPostsArr: IPostUser[] = JSON.parse(userPostsJson);
-              const currentPost = userPostsArr.find((item) => item.postId === Number(id));
+        const userPostsJson: any = localStorage.getItem("user_posts");
+        if (userPostsJson) {
+          const userPostsArr: IPostUser[] = JSON.parse(userPostsJson);
+          const currentPost = userPostsArr.find(
+            (item) => item.postId === Number(id)
+          );
 
-              if (currentPost) {
-                  setUser(currentPost.user);
-                  return;
-              }
-              return;
+          if (currentPost) {
+            setUser(currentPost.user);
+            return;
           }
-
-        axios
-          .get(
-            `https://dummyjson.com/users/${data.userId}?select=firstName,lastName,image`
-          )
-          .then(({ data }) => setUser(data))
-          .catch((e) => console.log(e));
+        } else {
+          axios
+            .get(
+              `https://dummyjson.com/users/${data.userId}?select=firstName,lastName,image`
+            )
+            .then(({ data }) => setUser(data))
+            .catch(() => setErrorUser("Не удается загрузить автора"));
+        }
       })
-      .catch((e) => console.log(e));
+      .catch(() => setErrorPost("Не удается загрузить пост")).finally(() => setLoading(false));
   }, []);
 
   return (
     <section className={styles.post}>
       <div className={styles.container}>
-        {!post || !user ? <Loader /> : null}
+        {isLoading ? <Loader /> : null}
         {post && user ? (
           <>
             <article>
@@ -66,7 +74,12 @@ const SinglePost: React.FC<TSinglePost> = ({ id }) => {
               </Link>
             </div>
           </>
-        ) : null}
+        ) : (
+          <>
+            {errorPost ? <h2 className={styles.error}>{errorPost}</h2> : null}
+            {errorUser ? <h2 className={styles.error}>{errorUser}</h2> : null}
+          </>
+        )}
       </div>
     </section>
   );

@@ -4,7 +4,7 @@ import styles from "./pagination.module.scss";
 import ArrowRight from "@/components/ui/arrow-right/arrow-right";
 import ArrowLeft from "@/components/ui/arrow-left/arrow-left";
 import { useSelector } from "react-redux";
-import { RootState } from "@/assets/store";
+import { RootState } from "src/assets/store";
 
 type TPagination = {
   currentPage: number;
