@@ -9,7 +9,7 @@ type TTag = {
 
 const Tag: React.FC<TTag> = ({tag, tags}) => {
     const isLastIndex = () => tags[tags.length - 1] === tag;
-         return <span className={styles.tag}>#{tag}{!isLastIndex() ? ',' : null}</span>
+         return <span data-testid={'tag'} className={styles.tag}>#{tag}{!isLastIndex() ? ',' : null}</span>
 }
 
 export default Tag;
