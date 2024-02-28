@@ -16,6 +16,7 @@ type TComments = {
 const Comments: React.FC<TComments> = ({ id }) => {
   const dispatch = useDispatch();
   const comments = useSelector((state: RootState) => state.comments.comments);
+  const currentPost = useSelector((state: RootState) => state.posts.currentPost)
 
   useEffect(() => {
     if (id) {
@@ -33,7 +34,7 @@ const Comments: React.FC<TComments> = ({ id }) => {
   return (
     <section className={styles.comments}>
       <div className={styles.container}>
-        {comments ? (
+        {comments && currentPost ? (
           <>
             <h2 className={styles.title}>Comments</h2>
             {comments.length > 0 ? (
@@ -48,7 +49,7 @@ const Comments: React.FC<TComments> = ({ id }) => {
             )}
           </>
         ) : null}
-        <CommentForm id={id} comments={comments} />
+        {currentPost && <CommentForm id={id} comments={comments} />}
       </div>
     </section>
   );

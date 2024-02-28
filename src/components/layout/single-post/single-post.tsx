@@ -10,17 +10,25 @@ import Loader from "@/components/ui/loader/loader";
 import BlogInfo from "@/components/blocks/blog-info/blog-info";
 import { ReactComponent as Arrow } from "@/assets/images/arrow-left.svg";
 import { getFromLs } from "@/utils/utils";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/assets/store";
+import {setCurrentPost} from "@/features/posts/posts";
 
 type TSinglePost = {
   id: string | undefined;
 };
 
 const SinglePost: React.FC<TSinglePost> = ({ id }) => {
-  const [post, setPost] = useState<IPost | null>(null);
+  const post = useSelector(
+    (state: RootState) => state.posts.currentPost
+  );
+  const dispatch = useDispatch();
   const [user, setUser] = useState<IUser | null>(null);
   const [errorUser, setErrorUser] = useState<string>("");
   const [errorPost, setErrorPost] = useState<string>("");
   const [isLoading, setLoading] = useState<boolean>(false);
+  
+  const onSetCurrentPost = (data: IPost | null) => dispatch(setCurrentPost(data)) 
 
   const fetchUser = async () =>
     await axios
@@ -34,7 +42,7 @@ const SinglePost: React.FC<TSinglePost> = ({ id }) => {
     await axios
       .get(`https://dummyjson.com/post/${id}`)
       .then(({ data }) => {
-        setPost(data);
+        onSetCurrentPost(data)
       })
       .catch(() => setErrorPost("Не удается загрузить пост"))
       .finally(() => setLoading(false));
@@ -51,6 +59,10 @@ const SinglePost: React.FC<TSinglePost> = ({ id }) => {
       setUser(currentPost.user);
     } else {
       fetchUser();
+    }
+    
+    return () => {
+      onSetCurrentPost(null);
     }
   }, [id]);
 

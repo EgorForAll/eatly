@@ -15,14 +15,16 @@ const RangeYellow: React.FC<TProgressBar> = ({ progress }) => {
 
   return (
     <div className={styles.progressWrapper}>
-      <input
-        onChange={(e) => handlerChange(e)}
-        type="range"
-        className={styles.progressBar}
-        defaultValue={value}
-        min={0}
-        max={100}
-      />
+      <form action="#">
+        <input
+          onChange={(e) => handlerChange(e)}
+          type="range"
+          className={styles.progressBar}
+          defaultValue={value}
+          min={0}
+          max={100}
+        />
+      </form>
     </div>
   );
 };
