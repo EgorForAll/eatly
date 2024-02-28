@@ -1,6 +1,6 @@
 // @flow 
 import * as React from 'react';
-import Header from "@/components/layout/header/Header";
+import Header from "@/components/layout/header/header";
 import Footer from "@/components/layout/footer/footer";
 import Blog from "@/components/layout/blog/blog";
 import {useEffect} from "react";

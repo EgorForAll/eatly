@@ -9,17 +9,17 @@ import { orders, purchases } from "@/mock/mock";
 import Dashboard from "@/components/layout/dashboard/dashboard";
 import Reviews from "@/components/layout/reviews/reviews";
 import Questions from "@/components/layout/questions/questions";
-import Header from "@/components/layout/header/Header";
+import MainHeader from "@/components/layout/main-header/main-header";
 import Footer from "@/components/layout/footer/footer";
 import { useEffect } from "react";
 
 const MainPage: React.FC = () => {
-  useEffect(() => {
-    window.scroll(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scroll(0, 0);
+  // }, []);
   return (
     <>
-      <Header />
+      <MainHeader />
       <main className="main">
         <Intro />
         <Statistics statsList={statsList} />

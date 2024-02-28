@@ -4,7 +4,7 @@ import Logo from "@/components/ui/logo/Logo";
 import { Link } from "react-router-dom";
 import AnchorLink from "@/components/ui/anchor/anchor";
 
-const Header: React.FC = () => {
+const MainHeader: React.FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -27,4 +27,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default MainHeader;

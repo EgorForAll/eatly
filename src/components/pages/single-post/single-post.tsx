@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import Header from "@/components/layout/header/Header";
+import Header from "@/components/layout/header/header";
 import Footer from "@/components/layout/footer/footer";
 import SinglePost from "@/components/layout/single-post/single-post";
 import { useParams } from "react-router-dom";
