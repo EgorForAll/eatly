@@ -3,7 +3,7 @@ import * as React from "react";
 import styles from "./single-post.module.scss";
 import { useEffect, useState } from "react";
 import { IPost } from "@/interfaces/post";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { Link } from "react-router-dom";
 import { IUser } from "@/interfaces/user";
 import Loader from "@/components/ui/loader/loader";
@@ -12,40 +12,25 @@ import { ReactComponent as Arrow } from "@/assets/images/arrow-left.svg";
 import { getFromLs } from "@/utils/utils";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/assets/store";
-import {setCurrentPost} from "@/features/posts/posts";
+import { setCurrentPost } from "@/features/posts/posts";
+import { getUser } from "@/shared/get-user/get-user";
+import { getPost } from "@/shared/get-post/get-post";
 
 type TSinglePost = {
   id: string | undefined;
 };
 
 const SinglePost: React.FC<TSinglePost> = ({ id }) => {
-  const post = useSelector(
-    (state: RootState) => state.posts.currentPost
-  );
+  const post = useSelector((state: RootState) => state.posts.currentPost);
   const dispatch = useDispatch();
   const [user, setUser] = useState<IUser | null>(null);
   const [errorUser, setErrorUser] = useState<string>("");
   const [errorPost, setErrorPost] = useState<string>("");
   const [isLoading, setLoading] = useState<boolean>(false);
-  
-  const onSetCurrentPost = (data: IPost | null) => dispatch(setCurrentPost(data)) 
 
-  const fetchUser = async () =>
-    await axios
-      .get(`https://dummyjson.com/users/${id}?select=firstName,lastName,image`)
-      .then(({ data }) => {
-        setUser(data);
-      })
-      .catch(() => setErrorUser("Не удается загрузить автора"));
+  const onSetCurrentPost = (data: IPost | null) =>
+    dispatch(setCurrentPost(data));
 
-  const loadPost = async () =>
-    await axios
-      .get(`https://dummyjson.com/post/${id}`)
-      .then(({ data }) => {
-        onSetCurrentPost(data)
-      })
-      .catch(() => setErrorPost("Не удается загрузить пост"))
-      .finally(() => setLoading(false));
 
   // В данном компоненте производится проверка на наличие ифнормации о пользователе localStorage. Если его нет в localStorage, то производится запрос на сервер
 
@@ -53,17 +38,22 @@ const SinglePost: React.FC<TSinglePost> = ({ id }) => {
     setLoading(true);
     setErrorPost("");
     setErrorUser("");
-    loadPost();
+    getPost(id)
+      .then(({ data }) => onSetCurrentPost(data))
+      .catch(() => setErrorPost("Не удается загрузить пост"))
+      .finally(() => setLoading(false));
     const currentPost = getFromLs(Number(id));
     if (currentPost) {
       setUser(currentPost.user);
     } else {
-      fetchUser();
+      getUser(id)
+        .then(({ data }) => setUser(data))
+        .catch(() => setErrorUser("Не удается загрузить автора"));
     }
-    
+
     return () => {
       onSetCurrentPost(null);
-    }
+    };
   }, [id]);
 
   return (

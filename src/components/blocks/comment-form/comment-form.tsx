@@ -7,6 +7,8 @@ import { useRef, useState } from "react";
 import { IComment } from "@/interfaces/comment";
 import { useDispatch } from "react-redux";
 import { addComment } from "@/features/comments/comments";
+import {postComment} from "@/shared/post-comment/post-comment";
+import {IPostComment} from "@/interfaces/post-comment";
 
 type TCommentForm = {
   id: string | undefined;
@@ -25,19 +27,13 @@ const CommentForm: React.FC<TCommentForm> = ({ id, comments }) => {
     if (comment && comment.value.length > 0) {
       setLoading(true);
       setError("");
-      const data = {
+      const data: IPostComment = {
         body: comment.value,
         postId: id,
         userId: 5,
       };
-      const headers = {
-        "Content-Type": "application/json",
-      };
-      axios
-        .post("https://dummyjson.com/comments/add", data, {
-          headers: headers,
-        })
-        .then((res) => {
+
+      postComment(data).then((res) => {
           if (res.status === 200) {
             if (comments !== null) {
               dispatch(addComment([...comments, res.data]));

@@ -10,6 +10,7 @@ import Article from "@/components/blocks/article/article";
 import Pagination from "@/components/blocks/pagination/pagination";
 import { IRequest } from "@/interfaces/request";
 import Loader from "@/components/ui/loader/loader";
+import { getPosts } from "@/shared/get-posts/get-posts";
 
 const BLOGS_PER_PAGE = 12;
 
@@ -24,23 +25,19 @@ const Blog: React.FC = () => {
 
   const addToRedux = (data: IRequest) => dispatch(fetchPosts(data));
 
-  const loadPosts = () =>
-    axios
-      .get(
-        "https://dummyjson.com/posts?select=id,title,reactions,tags,body,userId"
-      )
-      .then(({ data }) => addToRedux(data))
-      .then(() => setError(""))
-      .catch((e: { message: React.SetStateAction<string> }) =>
-        setError(e.message)
-      );
-
   useEffect(() => {
     const postsUsersJson = localStorage.getItem("user_posts");
     if (!postsUsersJson) {
       localStorage.setItem("user_posts", JSON.stringify([]));
     }
-    loadPosts();
+    getPosts()
+      .then(({ data }) => {
+        addToRedux(data);
+        setError("");
+      })
+      .catch((e: { message: React.SetStateAction<string> }) =>
+        setError(e.message)
+      );
   }, []);
 
   const currentBlogs = posts?.slice(firstIndex, lastIndex);

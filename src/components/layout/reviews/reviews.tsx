@@ -1,19 +1,19 @@
 // @flow
 import * as React from "react";
-import styles from "./reviews.module.scss"
+import styles from "./reviews.module.scss";
 import FullReview from "@/components/blocks/full-review/full-review";
 import { IReview } from "@/interfaces/reviews";
 import ShortReview from "@/components/blocks/short-review/short-review";
 import { CSSProperties, useEffect, useState } from "react";
 import axios from "axios";
 import { detectFirefox } from "@/utils/utils";
+import { getAllComments } from "@/shared/get-all-comments/get-all-comments";
 
 const Reviews: React.FC = () => {
   const [reviews, setReviews] = useState<IReview[] | []>([]);
 
   useEffect(() => {
-    axios
-      .get("https://dummyjson.com/comments")
+    getAllComments()
       .then(({ data }) => setReviews(data.comments))
       .catch((e) => console.error(e));
   }, []);
@@ -49,7 +49,9 @@ const Reviews: React.FC = () => {
                 ))}
             </ul>
           </>
-        ) : <h3 className={styles.notFound}>Отзывы не найдены</h3>}
+        ) : (
+          <h3 className={styles.notFound}>Отзывы не найдены</h3>
+        )}
       </div>
     </section>
   );

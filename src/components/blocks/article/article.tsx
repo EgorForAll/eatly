@@ -11,7 +11,8 @@ import { useEffect, useState } from "react";
 import { IUser } from "@/interfaces/user";
 import axios from "axios";
 import UserInfo from "@/components/blocks/user-info/user-info";
-import {getFromLs} from "@/utils/utils";
+import { getFromLs } from "@/utils/utils";
+import { getUser } from "@/shared/get-user/get-user";
 
 type TArticle = {
   post: IPost;
@@ -24,10 +25,7 @@ const Article: React.FC<TArticle> = ({ post }) => {
   // В данном компоненте предусмотрено кэширование пользователей. В localStorage сохраняется массив из объектов, по которым можно определить за каким пользователем какой пост закреплен. При повторном рендеринге, тем самым, запрос не происходит, а данные о пользователе берутся из этого массива.
 
   const fetchUser = async () => {
-    await axios
-      .get(
-        `https://dummyjson.com/users/${post.userId}?select=firstName,lastName,image,body`
-      )
+    getUser(post.id)
       .then(({ data }) => {
         setUser(data);
         const userPost: IPostUser = {
@@ -48,11 +46,11 @@ const Article: React.FC<TArticle> = ({ post }) => {
   };
 
   useEffect(() => {
-  const currentPost = getFromLs(post.id)
+    const currentPost = getFromLs(post.id);
     if (currentPost) {
-      setUser(currentPost.user)
-    } else  {
-      fetchUser()
+      setUser(currentPost.user);
+    } else {
+      fetchUser();
     }
   }, []);
 

@@ -5,15 +5,13 @@ import { IRecipes } from "@/interfaces/recipes";
 import MealCard from "@/components/blocks/meal-card/meal-card";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { getRecipes } from "@/shared/get-recipes/get-recipes";
 
 const Recipes: React.FC = () => {
   const [recipes, setRecipes] = useState<IRecipes[] | []>([]);
 
   const fetchRecipes = () =>
-    axios
-      .get(
-        "https://dummyjson.com/recipes?select=name,image,tags,cookTimeMinutes,rating"
-      )
+    getRecipes()
       .then(({ data }) => setRecipes(data.recipes))
       .catch((e) => console.error(e));
 
