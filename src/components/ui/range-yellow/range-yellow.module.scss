@@ -1,0 +1,44 @@
+.progressWrapper {
+  width: 100%;
+  height: 15px;
+  overflow: hidden;
+  border: none;
+}
+
+.progressBar {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #feefd1;
+
+  &::-webkit-slider-runnable-track {
+    height: 100%;
+    background: inherit;
+  }
+
+  &::-moz-range-track {
+    height: 100%;
+    background: #feefd1;
+    opacity: 0.5;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 15px;
+    width: 15px;
+    background-color: #FBAD18;
+    box-shadow: -407px 0 0 400px #FBAD18;
+    border-radius: 5px;
+  }
+
+  &::-moz-range-thumb {
+    height: 100%;
+    width: 100%;
+    background-color: #FBAD18FF;
+  }
+}
