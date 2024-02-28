@@ -15,7 +15,7 @@ const recipe: IRecipes =
   }
 
 describe("Meal card component", () => {
-    it('Meal card renders', () => {
+    it('Meal card renders correctly', () => {
         render(<MealCard recipe={recipe} />)
         const mealCard = screen.getByTestId('meal-card')
         expect(mealCard).toBeInTheDocument()
@@ -29,7 +29,7 @@ describe("Meal card component", () => {
             expect(mealCard.classList.contains(styles.itemMovedUp)).toBe(true)
         }, 100)
     })
-    it('bookmark renders', () => {
+    it('bookmark renders correctly', () => {
         render(<MealCard recipe={recipe} />)
         const bookmark = screen.getByTestId('bookmark')
         expect(bookmark).toBeInTheDocument()

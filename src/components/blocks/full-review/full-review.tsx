@@ -2,8 +2,8 @@
 import * as React from 'react';
 import {IReview} from "@/interfaces/reviews";
 import styles from "./full-review.module.scss";
-import {ReactComponent as QuotesSvg} from "@/assets/images/quotes.svg";
-import ReviewText from "@/components/ui/review-text/review-text";
+import {ReactComponent as QuotesSvg} from "../../../assets/images/quotes.svg";
+import ReviewText from "../../ui/review-text/review-text";
 
 type TFullReview = {
     review: IReview
@@ -12,7 +12,7 @@ type TFullReview = {
 const FullReview: React.FC<TFullReview> = ({review}) => {
 
     return (
-        <div className={styles.review}>
+        <div className={styles.review} data-testid={'review'}>
             <header className={styles.header}>
                 <div className={styles.clientInfo}>
                     <h2 className={styles.name}>@{review.user.username}</h2>
