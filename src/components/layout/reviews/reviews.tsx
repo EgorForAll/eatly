@@ -5,17 +5,24 @@ import FullReview from "@/components/blocks/full-review/full-review";
 import { IReview } from "@/interfaces/reviews";
 import ShortReview from "@/components/blocks/short-review/short-review";
 import { CSSProperties, useEffect, useState } from "react";
-import axios from "axios";
 import { detectFirefox } from "@/utils/utils";
 import { getAllComments } from "@/shared/get-all-comments/get-all-comments";
+import Loader from "@/components/ui/loader/loader";
 
 const Reviews: React.FC = () => {
   const [reviews, setReviews] = useState<IReview[] | []>([]);
+  const [isLoading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
+    setLoading(true);
     getAllComments()
       .then(({ data }) => setReviews(data.comments))
-      .catch((e) => console.error(e));
+      .catch((e) => {
+        console.error(e);
+        setError("Не удается загрузить отзывы");
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   const isFirefox = detectFirefox();
@@ -34,7 +41,8 @@ const Reviews: React.FC = () => {
         <span>Customer</span> Say
       </h2>
       <div className={styles.container}>
-        {reviews.length > 0 ? (
+        {isLoading && <Loader />}
+        {reviews.length > 0 && (
           <>
             <div className={styles.fullReview}>
               {firstReview && <FullReview review={firstReview} />}
@@ -49,8 +57,9 @@ const Reviews: React.FC = () => {
                 ))}
             </ul>
           </>
-        ) : (
-          <h3 className={styles.notFound}>Отзывы не найдены</h3>
+        )}
+        {error && !reviews.length && (
+          <h3 className={styles.notFound}>{error}</h3>
         )}
       </div>
     </section>
