@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import styles from "./comments-form.module.scss";
-import Loader from "@/components/ui/loader/loader";
+import Loader from "../../ui/loader/loader;
 import axios from "axios";
 import { useRef, useState } from "react";
 import { IComment } from "@/interfaces/comment";
