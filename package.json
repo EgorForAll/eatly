@@ -77,5 +77,10 @@
     "react-test-renderer": "^18.2.0",
     "storybook": "^7.6.15",
     "webpack": "^5.90.1"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^axios$": "axios/dist/node/axios.cjs"
+    }
   }
 }

@@ -12,7 +12,7 @@ const ArrowRight: React.FC<TPaginationArrow> = ({togglePage, disabled}) => {
 
 
     return (
-        <button className={styles.button} onClick={() => togglePage()} disabled={disabled}>
+        <button data-testid={'prev-button'} className={styles.button} onClick={() => togglePage()} disabled={disabled}>
             <svg  width="46" height="30" viewBox="0 0 46 30" fill="none"
                  xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" clipRule="evenodd"

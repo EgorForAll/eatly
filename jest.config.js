@@ -14,4 +14,7 @@ module.exports = {
     "json",
     "node"
   ],
+  "moduleNameMapper": {
+    "^axios$": "axios/dist/node/axios.cjs"
+  }
 }
