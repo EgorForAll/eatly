@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./blog.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "@/features/posts/posts";
-import axios from "axios";
 import { RootState } from "src/assets/store";
 import Article from "@/components/blocks/article/article";
 import Pagination from "@/components/blocks/pagination/pagination";
@@ -12,12 +11,9 @@ import { IRequest } from "@/interfaces/request";
 import Loader from "@/components/ui/loader/loader";
 import { getPosts } from "@/shared/get-posts/get-posts";
 
-const BLOGS_PER_PAGE = 12;
 
 const Blog: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [lastIndex, setLastIndex] = useState(BLOGS_PER_PAGE);
-  const [firstIndex, setFirstIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
   const [error, setError] = useState<string>("");
   const scrollTo = useRef<HTMLHeadingElement>(null);
   const posts = useSelector((state: RootState) => state.posts.posts);
@@ -25,12 +21,8 @@ const Blog: React.FC = () => {
 
   const addToRedux = (data: IRequest) => dispatch(fetchPosts(data));
 
-  useEffect(() => {
-    const postsUsersJson = localStorage.getItem("user_posts");
-    if (!postsUsersJson) {
-      localStorage.setItem("user_posts", JSON.stringify([]));
-    }
-    getPosts()
+  const getPostsFromServer = (page: number) =>
+    getPosts(page)
       .then(({ data }) => {
         addToRedux(data);
         setError("");
@@ -38,9 +30,15 @@ const Blog: React.FC = () => {
       .catch((e: { message: React.SetStateAction<string> }) =>
         setError(e.message)
       );
-  }, []);
 
-  const currentBlogs = posts?.slice(firstIndex, lastIndex);
+  useEffect(() => {
+    const postsUsersJson = localStorage.getItem("user_posts");
+    if (!postsUsersJson) {
+      localStorage.setItem("user_posts", JSON.stringify([]));
+    }
+    getPostsFromServer(currentPage)
+  }, [currentPage]);
+
 
   const onScrollTop = () => {
     if (scrollTo.current) {
@@ -48,18 +46,14 @@ const Blog: React.FC = () => {
     }
   };
 
-  const toggleNext = (page: number) => {
+  const toggleNext = () => {
     onScrollTop();
-    setCurrentPage(page);
-    setFirstIndex(currentPage * BLOGS_PER_PAGE);
-    setLastIndex(firstIndex + BLOGS_PER_PAGE * 2);
+    setCurrentPage((prev) => prev + 1);
   };
 
-  const togglePrev = (page: number) => {
+  const togglePrev = () => {
     onScrollTop();
-    setCurrentPage(page);
-    setFirstIndex(firstIndex - BLOGS_PER_PAGE);
-    setLastIndex(firstIndex);
+    setCurrentPage((prev) => prev - 1);
   };
 
   return (
@@ -69,19 +63,19 @@ const Blog: React.FC = () => {
       </h1>
       <div className={styles.container}>
         <ul className={styles.list}>
-          {currentBlogs &&
-            currentBlogs.map((item, index) => (
+          {posts &&
+            posts.map((item, index) => (
               <Article post={item} key={index} />
             ))}
         </ul>
         {error ? <h2 className={styles.error}>{error}</h2> : null}
-        {!currentBlogs && !error ? <Loader /> : null}
-        {currentBlogs && (
+        {!posts && !error ? <Loader /> : null}
+        {posts && (
           <Pagination
             currentPage={currentPage}
             toggleNext={toggleNext}
             togglePrev={togglePrev}
-            lastIndex={lastIndex}
+            posts={posts}
           />
         )}
       </div>

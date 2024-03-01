@@ -3,34 +3,31 @@ import * as React from "react";
 import styles from "./pagination.module.scss";
 import ArrowRight from "@/components/ui/arrow-right/arrow-right";
 import ArrowLeft from "@/components/ui/arrow-left/arrow-left";
-import { useSelector } from "react-redux";
-import { RootState } from "src/assets/store";
+import { IPost } from "@/interfaces/post";
 
 type TPagination = {
   currentPage: number;
   toggleNext: (number: number) => void;
   togglePrev: (number: number) => void;
-  lastIndex: number;
+  posts: IPost[];
 };
 
 const Pagination: React.FC<TPagination> = ({
   currentPage,
   toggleNext,
   togglePrev,
-  lastIndex,
+  posts,
 }) => {
-  const total = useSelector((state: RootState) => state.posts.total);
-
   const incPage = () => toggleNext(currentPage + 1);
   const decPage = () => togglePrev(currentPage - 1);
 
-  const isLastDisabled = lastIndex > total;
-  const isFirstDisabled = currentPage === 1;
+  const isFirstDisabled = currentPage === 0;
+  const isNextDisabled = posts[posts.length - 1].id === 150
 
   return (
     <div className={styles.pagination}>
       <ArrowLeft togglePage={decPage} disabled={isFirstDisabled} />
-      <ArrowRight togglePage={incPage} disabled={isLastDisabled} />
+      <ArrowRight togglePage={incPage} disabled={isNextDisabled}/>
     </div>
   );
 };
