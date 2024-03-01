@@ -50,6 +50,11 @@
   text-transform: capitalize;
   color: #999;
   margin-right: 77px;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    color: #6C5FBC;
+  }
   &:last-child {
     margin-right: 0;
   }
@@ -102,4 +107,14 @@
 
 .mediaIcon {
   text-decoration: none;
+
+  &:hover {
+    svg {
+      * {
+        transition: fill 0.3s ease-in-out;
+        fill: #6C5FBC;
+      }
+    }
+  }
+
 }

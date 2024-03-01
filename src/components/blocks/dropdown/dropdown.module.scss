@@ -53,6 +53,15 @@ width: 100%;
   padding: 0;
   transform: translate(22px, 15px);
 
+  &:hover {
+    svg {
+      circle {
+        transition: fill 0.2s ease-in-out;
+        fill: #583fb4;
+      }
+    }
+  }
+
   @media (max-width: 992px) {
     transform: translate(0, 0);
   }

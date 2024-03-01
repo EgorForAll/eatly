@@ -59,6 +59,11 @@
   text-decoration: none;
   border: 2px solid #6C5FBC;
   border-radius: 12px;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #cecbde;
+  }
 
   @media (max-width: 992px) {
     width: 140px;

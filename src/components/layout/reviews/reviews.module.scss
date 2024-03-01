@@ -81,12 +81,17 @@
     }
   }
 
-  &::-webkit-scrollbar-track:hover {
-    background-color: #cecbde;
-  }
 
-  &::-webkit-scrollbar-track:active {
-    background-color: #cecbde;
+  &::-webkit-scrollbar-track {
+
+    &:hover {
+      background-color: #a6a5a9;
+    }
+
+    &:active {
+      background-color: #a6a5a9;
+    }
+
   }
 
   &::-webkit-scrollbar-thumb {
@@ -94,12 +99,20 @@
     background-color: #675BB1;
   }
 
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: #675BB1;
-  }
+  &::-webkit-scrollbar-thumb {
+    transition: background-color 0.3s ease-in-out;
 
-  &::-webkit-scrollbar-thumb:active {
-    background-color: #675BB1;
+    &:hover {
+      background-color: #583fb4;
+    }
+
+    &:active {
+      background-color: #583fb4;
+    }
+
+    &:focus {
+      background-color: #583fb4;
+    }
   }
 
 
