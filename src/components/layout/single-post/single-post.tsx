@@ -3,8 +3,7 @@ import * as React from "react";
 import styles from "./single-post.module.scss";
 import { useEffect, useState } from "react";
 import { IPost } from "@/interfaces/post";
-import axios, { AxiosResponse } from "axios";
-import { Link } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import { IUser } from "@/interfaces/user";
 import Loader from "@/components/ui/loader/loader";
 import BlogInfo from "@/components/blocks/blog-info/blog-info";
@@ -21,6 +20,7 @@ type TSinglePost = {
 };
 
 const SinglePost: React.FC<TSinglePost> = ({ id }) => {
+  const navigate = useNavigate()
   const post = useSelector((state: RootState) => state.posts.currentPost);
   const dispatch = useDispatch();
   const [user, setUser] = useState<IUser | null>(null);
@@ -68,9 +68,9 @@ const SinglePost: React.FC<TSinglePost> = ({ id }) => {
               <p className={styles.text}>{post.body}</p>
             </article>
             <div className={styles.linkWrapper}>
-              <Link to={"/blog"} className={styles.backBlogs}>
+              <button onClick={() => navigate('/blog')}  className={styles.backBlogs}>
                 <Arrow /> <span>All Articles</span>
-              </Link>
+              </button>
             </div>
           </>
         ) : (
